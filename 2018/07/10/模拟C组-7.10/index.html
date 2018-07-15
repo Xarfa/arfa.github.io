@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="模拟C组 7.10"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">模拟C组 7.10</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-10</span>
+            <span class="time">19:53:52</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/JZOI/">JZOI</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="7-10-排名-12-26"><a href="#7-10-排名-12-26" class="headerlink" title="7.10 排名:12/26"></a>7.10 排名:12/26</h1><a id="more"></a>
+<h2 id="T1-分队问题"><a href="#T1-分队问题" class="headerlink" title="T1 分队问题"></a>T1 分队问题</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><code>给定n个选手，将他们分成若干只队伍。其中第i个选手要求自己所属的队伍的人数大等于a[i]人。
+在满足所有选手的要求的前提下，最大化队伍的总数。
+注：每个选手属于且仅属于一支队伍。</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line"></span><br><span class="line">第一行一个整数n，表示人数。</span><br><span class="line">以下n行，每行一个整数表示a[i]。</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">输出队伍总数的最大值。数据保证有解。</span><br><span class="line"></span><br><span class="line">Sample Input</span><br><span class="line"></span><br><span class="line">5</span><br><span class="line">2</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">3 </span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line"></span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">Data Constraint</span><br><span class="line"></span><br><span class="line">对于20%的数据，n &lt;= 10</span><br><span class="line">对于40%的数据，n &lt;= 1000</span><br><span class="line">对于60%的数据，n &lt;= 10000</span><br><span class="line">对于100%的数据，1 &lt;= n &lt;= 10^6</span><br></pre></td></tr></table></figure>
+<p>一开始以为是贪心,然后排序后就拜拜了。结果<del>天不负有心人</del>,<del><strong>40分</strong></del>。然后看向题解,WC?dp?!!</p>
+<p>好吧,先正序sort一遍(满足大的需求),然后dp,ans[i]:=max{ans[1],ans[2]..ans[i-num[i]]}+1。就算对于我这个dp馄饨也是可以想到的。然后再想一想,max??O(n^2)。不炸就真的见怪了。然后弄一个前缀和,这题就结束了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Uses math;</span><br><span class="line"></span><br><span class="line">var</span><br><span class="line">        i,j,n:longint;</span><br><span class="line">        ans,num,maxn:array[0..1000010] of longint;</span><br><span class="line"></span><br><span class="line">procedure Sort(l,r:longint);</span><br><span class="line">var</span><br><span class="line">	i,j,s,t:longint;</span><br><span class="line">begin</span><br><span class="line">	i:=l; j:=r; s:=num[(l+r) div 2];</span><br><span class="line">        repeat</span><br><span class="line">                while num[i]&lt;s do i:=i+1;</span><br><span class="line">                while num[j]&gt;s do j:=j-1;</span><br><span class="line">                if i&lt;=j then</span><br><span class="line">                begin</span><br><span class="line">                        t:=num[i]; num[i]:=num[j]; num[j]:=t;</span><br><span class="line">		        inc(i); dec(j);</span><br><span class="line">                end;</span><br><span class="line">        until i&gt;=j;</span><br><span class="line">        if i&lt;r then Sort(i,r);</span><br><span class="line">        if j&gt;l then Sort(l,j);</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">        read(n);</span><br><span class="line">        for i:=1 to n do</span><br><span class="line">                read(num[i]);</span><br><span class="line">        Sort(1,n);</span><br><span class="line">        for i:=1 to n do</span><br><span class="line">        begin</span><br><span class="line">                ans[i]:=maxn[i-num[i]]+1;</span><br><span class="line">                maxn[i]:=max(maxn[i-1],ans[i]);</span><br><span class="line">        end;</span><br><span class="line">        writeln(ans[n]);</span><br><span class="line">end.</span><br></pre></td></tr></table></figure>
+<h2 id="T2-数字对"><a href="#T2-数字对" class="headerlink" title="T2 数字对"></a>T2 数字对</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p><code>对于一个数字对(a, b)，我们可以通过一次操作将其变为新数字对(a+b, b)或(a, a+b)。
+给定一正整数n，问最少需要多少次操作可将数字对(1, 1)变为一个数字对，该数字对至少有一个数字为n。</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line"></span><br><span class="line">第一行一个正整数 n</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">    一个整数表示答案。</span><br><span class="line"></span><br><span class="line">Sample Input</span><br><span class="line"></span><br><span class="line">5</span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">Data Constraint</span><br><span class="line"></span><br><span class="line">    对于30%的数据， 1 &lt;= n &lt;= 1000</span><br><span class="line">    对于60%的数据， 1 &lt;= n &lt;= 20000</span><br><span class="line">    对于100%的数据，1 &lt;= n &lt;= 10^6 100万</span><br><span class="line"></span><br><span class="line">Hint</span><br><span class="line"></span><br><span class="line">【样例解释】</span><br><span class="line">(1,1)  →  (1,2)  →  (3,2)  →  (5,2)</span><br></pre></td></tr></table></figure>
+<p>哇,这不是水题吗,这不是和前几天的’页’差不多嘛?Bfs一遍无人可当。不过看一下数据,就不论玄不玄了。</p>
+<p>这道题可以反过来推算。假如b&gt;a,(a,b)-&gt;(a,b+a) or (a+b,b)就可以转换为:(a,b)&lt;-(a,b-a)。然后n的话就全部推算一遍就OK了。(a+b=n,循环一遍,求最小值)</p>
+<p>就算到达了这种思想境界,我们还是会超时。所以想到了类似于GCD的做法,看一下这个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1,99)</span><br><span class="line">(1,98) (99-1)</span><br><span class="line">(1,97) (98-1)</span><br><span class="line">.......</span><br><span class="line">(1,1) 结束</span><br></pre></td></tr></table></figure></p>
+<p>这不是贼慢了,我们就直接b mod a就可以了呀(注意a&gt;b),那么它们相除的次数就是b div a。此题非数论,完全找规律。<br><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Uses</span> math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        n,i,a,b,ans,o:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        o:=maxlongint;</span><br><span class="line">        <span class="keyword">read</span>(n);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n-<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                a:=i;</span><br><span class="line">                b:=n-i;</span><br><span class="line">                ans:=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">repeat</span></span><br><span class="line">                        <span class="keyword">if</span> a&gt;b <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">begin</span></span><br><span class="line">                                inc(ans,a <span class="keyword">div</span> b);</span><br><span class="line">                                a:=a <span class="keyword">mod</span> b;</span><br><span class="line">                        <span class="keyword">end</span></span><br><span class="line">                        <span class="keyword">else</span></span><br><span class="line">                        <span class="keyword">begin</span></span><br><span class="line">                                inc(ans,b <span class="keyword">div</span> a);</span><br><span class="line">                                b:=b <span class="keyword">mod</span> a;</span><br><span class="line">                        <span class="keyword">end</span>;</span><br><span class="line">                        <span class="keyword">if</span> (a=<span class="number">0</span>)<span class="keyword">or</span>(b=<span class="number">0</span>) <span class="keyword">then</span></span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">until</span> (a&lt;=<span class="number">1</span>)<span class="keyword">and</span>(b&lt;=<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (a=<span class="number">1</span>)<span class="keyword">or</span>(b=<span class="number">1</span>) <span class="keyword">then</span></span><br><span class="line">                        o:=min(ans,o);</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        writeln(o);</span><br><span class="line"><span class="keyword">end</span>.</span><br><span class="line">``` </span><br><span class="line">## T3 高级打字机</span><br><span class="line">### Description</span><br><span class="line">``</span><br><span class="line">早苗入手了最新的高级打字机。最新款自然有着与以往不同的功能，那就是它具备撤销功能，厉害吧。</span><br><span class="line">请为这种高级打字机设计一个程序，支持如下<span class="number">3</span>种操作：</span><br><span class="line">T x：在文章末尾打下一个小写字母x。(<span class="keyword">type</span>操作)</span><br><span class="line">U x：撤销最后的x次修改操作。（Undo操作）（注意Query操作并不算修改操作）</span><br><span class="line">Q x：询问当前文章中第x个字母并输出。（Query操作）文章一开始可以视为空串。</span><br><span class="line">``</span><br></pre></td></tr></table></figure></p>
+<p>Input</p>
+<p>第1行：一个整数n，表示操作数量。<br>以下n行，每行一个命令。保证输入的命令合法。</p>
+<p>Output</p>
+<p>每行输出一个字母，表示Query操作的答案。</p>
+<p>Sample Input</p>
+<p>7<br>T a<br>T b<br>T c<br>Q 2<br>U 2<br>T c<br>Q 2</p>
+<p>Sample Output</p>
+<p>b<br>c</p>
+<p>Data Constraint</p>
+<p>对于40%的数据 n&lt;=200;<br>对于100%的数据 n&lt;=100000；保证Undo操作不会撤销Undo操作。<br>&lt;高级挑战&gt;<br>对于200%的数据 n&lt;=100000；Undo操作可以撤销Undo操作。</p>
+<p>&lt;IOI挑战&gt;<br>必须使用在线算法完成该题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">看到IOI挑战就GG了,此题必~~切~~。然后打了一个100%的程序,~~只得了50分~~。</span><br><span class="line"></span><br><span class="line">此题200%是持久化数组,用于各种历史版本。幸好的是之前就学了主席树,现在改起来非常方便,详情请见我的主席树博客。</span><br><span class="line"></span><br><span class="line">补充:此题是可持久化数组,运用主席树的时候,只用对叶子节点进行赋值。</span><br><span class="line"></span><br><span class="line">```pascal</span><br><span class="line">var</span><br><span class="line">        n,cnt,hao,tot:longint;</span><br><span class="line">        len,lson,rson,root:array[0..2000035] of longint;</span><br><span class="line">        value:array[0..2000035] of char;</span><br><span class="line">        s:string;</span><br><span class="line">        HuHa:char;</span><br><span class="line"></span><br><span class="line">procedure build(var rt:longint; fa,l,r,po:longint);</span><br><span class="line">var</span><br><span class="line">        mid:longint;</span><br><span class="line">begin</span><br><span class="line">        if (rt=0) then</span><br><span class="line">        begin</span><br><span class="line">                inc(tot);</span><br><span class="line">                rt:=tot;</span><br><span class="line">        end;</span><br><span class="line">        if l=r then</span><br><span class="line">        begin</span><br><span class="line">                value[rt]:=HuHa;</span><br><span class="line">                exit;</span><br><span class="line">        end;</span><br><span class="line"></span><br><span class="line">        mid:=(l+r) div 2;</span><br><span class="line">        if (po&lt;=mid) then</span><br><span class="line">        begin</span><br><span class="line">                rson[rt]:=rson[fa];</span><br><span class="line">                build(lson[rt],lson[fa],l,mid,po);</span><br><span class="line">        end;</span><br><span class="line">        if (po&gt;=mid+1) then</span><br><span class="line">        begin</span><br><span class="line">                lson[rt]:=lson[fa];</span><br><span class="line">                build(rson[rt],rson[fa],mid+1,r,po);</span><br><span class="line">        end;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">function Query(rt,l,r,po:longint):char;</span><br><span class="line">var</span><br><span class="line">        mid:longint;</span><br><span class="line">begin</span><br><span class="line">        if l=r then</span><br><span class="line">                exit(value[rt]);</span><br><span class="line">        mid:=(l+r) div 2;</span><br><span class="line">        if (po&lt;=mid) then</span><br><span class="line">                exit(Query(lson[rt],l,mid,po));</span><br><span class="line">        if (po&gt;=mid+1) then</span><br><span class="line">                exit(Query(rson[rt],mid+1,r,po));</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">        readln(n);</span><br><span class="line">        while n&gt;0 do</span><br><span class="line">        begin</span><br><span class="line">                readln(s);</span><br><span class="line">                if s[1]=&apos;T&apos; then</span><br><span class="line">                begin</span><br><span class="line">                        HuHa:=s[3];</span><br><span class="line">                        inc(cnt);</span><br><span class="line">                        len[cnt]:=len[cnt-1]+1;</span><br><span class="line">                        Build(root[cnt],root[cnt-1],1,100007,len[cnt]);</span><br><span class="line">                end;</span><br><span class="line"></span><br><span class="line">                if s[1]=&apos;U&apos; then</span><br><span class="line">                begin</span><br><span class="line">                        delete(s,1,2);</span><br><span class="line">                        val(s,hao);</span><br><span class="line">                        inc(cnt);</span><br><span class="line">                        len[cnt]:=len[cnt-hao-1];</span><br><span class="line">                        root[cnt]:=root[cnt-hao-1];</span><br><span class="line">                end;</span><br><span class="line"></span><br><span class="line">                if s[1]=&apos;Q&apos; then</span><br><span class="line">                begin</span><br><span class="line">                        delete(s,1,2);</span><br><span class="line">                        val(s,hao);</span><br><span class="line">                        writeln(Query(root[cnt],1,100007,hao));</span><br><span class="line">                end;</span><br><span class="line">                dec(n);</span><br><span class="line">        end;</span><br><span class="line">end.</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

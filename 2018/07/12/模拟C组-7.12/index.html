@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="模拟C组 7.12"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">模拟C组 7.12</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-12</span>
+            <span class="time">19:53:52</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/JZOI/">JZOI</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h1 id="7-12-排名-完美垫底"><a href="#7-12-排名-完美垫底" class="headerlink" title="7.12 排名:完美垫底"></a>7.12 排名:<del>完美垫底</del></h1><a id="more"></a>
+<h2 id="T1-序章-弗兰德的秘密"><a href="#T1-序章-弗兰德的秘密" class="headerlink" title="T1 序章-弗兰德的秘密"></a>T1 序章-弗兰德的秘密</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><code>弗兰德最高的两棵树，只要知道两棵树的共同的相似度就行了……
+给定两棵有根树，可以任意删除两棵树上的节点（删除一棵节点必须保证该节点的子树内的所有节点也必须要被删除，换一种说法，删除后的树必须联通并形成一棵树，且根节点不能被删除），使得删除后的两棵树同构，这两棵树有一个共同大小，即树的size，最大化同构的树的size即为机关的答案……注：两棵同构的树要满足以下条件：
+1、两棵树节点个数相等。
+2、两棵树的以根节点的儿子为根子树对应同构。如下图，为两棵同构的有根树。
+如下图，为两棵同构的有根树。</code><br><img src="https://cdn.luogu.org/upload/pic/23119.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line">一行两个整数n,m分别表示两棵有根树的大小。</span><br><span class="line">以下n-1行描述第一棵树，每行两个数x,y表示x号节点是y号节点父亲。</span><br><span class="line">以下m-1行描述第二棵树，每行两个数x,y表示x号节点是y号节点父亲。</span><br><span class="line">数据保证两棵树的1号节点均为根。</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line">一行一个数，表示两棵树的相似度（删除后最大化的同构树的大小）。</span><br><span class="line"></span><br><span class="line">Sample Input</span><br><span class="line">3 3</span><br><span class="line">1 2</span><br><span class="line">1 3</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line">2</span><br><span class="line">【样例解释】</span><br><span class="line">第一棵树可以保留1号节点和2号节点删除3号节点，也可以保留1号节点与3号节点删除2号节点，</span><br><span class="line">第二棵树保留1号节点和2号节点删除3号节点。</span><br><span class="line">剩下的树同构，树的节点个数均为2。</span><br><span class="line"></span><br><span class="line">Data Constraint</span><br><span class="line">对于30%的数据，1 ≤ n ≤10</span><br><span class="line">对于60%的数据，1 ≤ n ≤ 100</span><br><span class="line">对于100%的数据，1 ≤ n ≤ 1000数据保证两棵树上每个节点的度均不超过5。</span><br></pre></td></tr></table></figure></p>
+<p>一开始以为可以用son的顺序来水字典树之类的东西来做标记,来判断。正解是树形Dp。</p>
+<h2 id="T2-圣章-精灵使的魔法语"><a href="#T2-圣章-精灵使的魔法语" class="headerlink" title="T2 圣章-精灵使的魔法语"></a>T2 圣章-精灵使的魔法语</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p><code>上述剧情省略。
+我没兴趣地瞟了一眼，“哼。这种东西我不看也会，伦福萨——密西卡！”...
+喂喂喂，别往我这边看啊，我有视线恐惧症啊！！！！况且，我只是把她正在吃的面包的样子变成虫子而已，谁会料到这种情况啊啊啊！！
+“里修！你……”她从牙缝里挤出了一个字。我顿感不妙，见到了那张比魔鬼还可怕的扭曲的面孔。“真是个魔法的天才哪！”她一扫之前不愉快的表情，想我露出大拇指，好像是在夸奖我的样子。</code></p>
+<p><code>“伦福萨”【即&quot; ( &quot;】和“密西卡”【即&quot; ) &quot;】是两种不同的精灵咒语，已知一个成功的咒语符合如下的规定：
+每一个密西卡之前都可以对应匹配到一个伦福萨，即为一个合法的精灵魔法咒语。
+方便的是，我们将“伦福萨”视为&quot; ( &quot;，“密西卡”视为&quot; ) &quot;，合法的精灵魔法咒语即为一个合法的括号序列。
+如：&quot; ( ( ( ) ) ) &quot;&quot; ( ( ) ( ) ) &quot;&quot; ( ) ( ) ( ) &quot;均为合法的魔法咒语，&quot; ) ( &quot;&quot; ( ) ) ( &quot;&quot; ( ( &quot;均为不合法的魔法咒语。
+现在弗洛莉给我一个长长的“伦福萨”【即&quot; ( &quot;】和“密西卡”【即&quot; ) &quot;】的片段，每次给我一个l和r，让我判断需要在这个片段前最少添多少个“伦福萨”【即&quot; ( &quot;】，以及最少添多少个“密西卡”【即&quot; ) &quot;】可以成为一个合法的魔法咒语，更令人不爽的是，弗洛莉有的时候还会把一个“伦福萨”【即&quot; ( &quot;】变成“密西卡”【即&quot; ) &quot;】，或把一个“密西卡”【即&quot; ) &quot;】变为“伦福萨”【即&quot; ( &quot;】。</code></p>
+<p>一眼看到”(()()(“,就想到了栈的解法和递归的解法。然后想到区间,就是用线段树。但是考场上的线段树就是乱打的,维护的就是区间括号类型数量。</p>
+<p>后来看了题解,线段树维护的值就是答案:区间内<strong>需要增加的左括号数量</strong>和<strong>需要增加的右括号数量</strong>。其中<strong>需要增加的右括号数量</strong>也可以转化为<strong>多余的左括号数量</strong>,思考一下即可得出。(need为需要增加的<strong>左括号</strong>数量,而surplus为多余的<strong>左括号</strong>数量)</p>
+<p>首先解决叶子节点的问题。叶子节点存什么?如果s(ansistring)[i]=’(‘的话就存上need[k]:=1,’)’则存上surplus[k]:=1。</p>
+<p>其次我们在区间上维护子节点的时候,有一个公式,<del>可以慢慢思考</del>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">need[k]:=need[k*2]+max(need[k*2+1]-surplus[k*2],0);</span><br><span class="line">surplus[k]:=surplus[k*2+1]+max(surplus[k*2]-need[k*2+1],0);</span><br></pre></td></tr></table></figure></p>
+<p>这个公式运用在Make_tree建树上和Change修改上。博客上有解释,这里不细讲。</p>
+<p>本道题目很多细节,所以我觉得打注释。</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Title:T2 圣章-精灵使的魔法语</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Uses</span> math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">	need,surplus:<span class="keyword">array</span>[<span class="number">0</span>..<span class="number">610000</span>] <span class="keyword">of</span> longint; <span class="comment">//上述讲解</span></span><br><span class="line">	ans,ask:<span class="keyword">array</span>[<span class="number">1</span>..<span class="number">2</span>] <span class="keyword">of</span> longint; <span class="comment">//答案与询问(Query的第1,2个数和Change的第1个数)</span></span><br><span class="line">	n,m,i,x,y,k,l,r:longint; <span class="comment">//某些变量</span></span><br><span class="line">	s,kk:ansistring;</span><br><span class="line">	a:char;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">make</span><span class="params">(l,r,k:longint)</span>;</span> <span class="comment">//Make_tree</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">	mid:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">if</span> l=r <span class="keyword">then</span> </span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		<span class="keyword">if</span> kk[l]=<span class="string">'('</span> <span class="keyword">then</span> surplus[k]:=<span class="number">1</span> <span class="comment">//上述</span></span><br><span class="line">		<span class="keyword">else</span>  need[k]:=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">exit</span>;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line">	mid:=(l+r) <span class="keyword">div</span> <span class="number">2</span>;</span><br><span class="line">	make(l,mid,k*<span class="number">2</span>);</span><br><span class="line">	make(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">        need[k]:=need[k*<span class="number">2</span>]+max(need[k*<span class="number">2</span>+<span class="number">1</span>]-surplus[k*<span class="number">2</span>],<span class="number">0</span>); <span class="comment">//子树的值改变,运用公式</span></span><br><span class="line">        surplus[k]:=surplus[k*<span class="number">2</span>+<span class="number">1</span>]+max(surplus[k*<span class="number">2</span>]-need[k*<span class="number">2</span>+<span class="number">1</span>],<span class="number">0</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">query</span><span class="params">(l,r,k,x,y:longint)</span>;</span> <span class="comment">//注意我们存储了x,y这对目标变量</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">	mid:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">if</span> (x=l)<span class="keyword">and</span>(r=y) <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		inc(ans[<span class="number">1</span>],max(need[k]-ans[<span class="number">2</span>],<span class="number">0</span>)); <span class="comment">//注意,一个是inc(c++:"+="),一个是赋值</span></span><br><span class="line">                ans[<span class="number">2</span>]:=surplus[k]+max(ans[<span class="number">2</span>]-need[k],<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">exit</span>;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">if</span> l=r <span class="keyword">then</span> <span class="comment">//某种加快操作</span></span><br><span class="line">                <span class="keyword">exit</span>;</span><br><span class="line"></span><br><span class="line">	mid:=(l+r) <span class="keyword">div</span> <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> y&lt;=mid <span class="keyword">then</span> <span class="comment">//3种情况,其中最后一种的2个转移,目标也转移</span></span><br><span class="line">		query(l,mid,k*<span class="number">2</span>,x,y)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">	<span class="keyword">if</span> x&gt;mid <span class="keyword">then</span></span><br><span class="line">		query(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>,x,y)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                query(l,mid,k*<span class="number">2</span>,x,mid);</span><br><span class="line">                query(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>,mid+<span class="number">1</span>,y);</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">change</span><span class="params">(l,r,k:longint)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">	mid:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">if</span> (l=r) <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		<span class="keyword">if</span> need[k]=<span class="number">1</span> <span class="keyword">then</span> <span class="comment">//改变括号类型</span></span><br><span class="line">		<span class="keyword">begin</span></span><br><span class="line">			need[k]:=<span class="number">0</span>;</span><br><span class="line">			surplus[k]:=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">begin</span></span><br><span class="line">			need[k]:=<span class="number">1</span>;</span><br><span class="line">			surplus[k]:=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">end</span>;</span><br><span class="line">		<span class="keyword">exit</span>;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">	mid:=(l+r) <span class="keyword">div</span> <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span> x&lt;=mid <span class="keyword">then</span> <span class="comment">//只有两种,注意目标只有一个</span></span><br><span class="line">		change(l,mid,k*<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                change(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        need[k]:=need[k*<span class="number">2</span>]+max(need[k*<span class="number">2</span>+<span class="number">1</span>]-surplus[k*<span class="number">2</span>],<span class="number">0</span>); <span class="comment">//子树的值发生改变,公式</span></span><br><span class="line">        surplus[k]:=surplus[k*<span class="number">2</span>+<span class="number">1</span>]+max(surplus[k*<span class="number">2</span>]-need[k*<span class="number">2</span>+<span class="number">1</span>],<span class="number">0</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">work</span><span class="params">(s:ansistring)</span>:</span>longint;<span class="comment">//取出2(1)个数/上述,C++选手自动跳过</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        bz:boolean;</span><br><span class="line">        i,j,k:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        ask[<span class="number">1</span>]:=<span class="number">0</span>;</span><br><span class="line">        ask[<span class="number">2</span>]:=<span class="number">0</span>;</span><br><span class="line">        k:=<span class="number">0</span>;</span><br><span class="line">        bz:=True;</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> length(s) <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> (s[i]&gt;=<span class="string">'0'</span>)<span class="keyword">and</span>(s[i]&lt;=<span class="string">'9'</span>) <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">begin</span></span><br><span class="line">                        val(s[i],j);</span><br><span class="line">                        inc(ask[k],ask[k]*<span class="number">9</span>+j);</span><br><span class="line">                        bz:=True;</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">if</span> bz <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">begin</span></span><br><span class="line">                        bz:=False;</span><br><span class="line">                        inc(k);</span><br><span class="line">                <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">if</span> ask[<span class="number">2</span>]&gt;<span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	assign(input,<span class="string">'elf.in'</span>);reset(input); <span class="comment">//某种文操</span></span><br><span class="line">	assign(output,<span class="string">'elf.out'</span>);rewrite(output);</span><br><span class="line">	readln(n,m);</span><br><span class="line">        readln(kk);</span><br><span class="line">        make(<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		readln(s);</span><br><span class="line">		<span class="keyword">if</span> work(s)=<span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">begin</span></span><br><span class="line">                        ans[<span class="number">1</span>]:=<span class="number">0</span>;<span class="comment">//答案</span></span><br><span class="line">                        ans[<span class="number">2</span>]:=<span class="number">0</span>;</span><br><span class="line">						x:=ask[<span class="number">1</span>];</span><br><span class="line">                        y:=ask[<span class="number">2</span>];</span><br><span class="line">						query(<span class="number">1</span>,n,<span class="number">1</span>,x,y);</span><br><span class="line">                        writeln(ans[<span class="number">1</span>],<span class="string">' '</span>,ans[<span class="number">2</span>]);</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">begin</span></span><br><span class="line">			x:=ask[<span class="number">1</span>];</span><br><span class="line">			change(<span class="number">1</span>,n,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">end</span>;</span><br><span class="line">	<span class="keyword">end</span>;</span><br><span class="line">	close(input);</span><br><span class="line">	close(output);</span><br><span class="line"><span class="keyword">end</span>.</span><br><span class="line"><span class="comment">//因为pascal的蓝色背景,所以一直用sublime打pascal,所以缩进有一点问题,并不是我打的chou</span></span><br></pre></td></tr></table></figure>
+<h2 id="T3-终章-剑之魂"><a href="#T3-终章-剑之魂" class="headerlink" title="T3 终章-剑之魂"></a>T3 终章-剑之魂</h2><p><code>My soul of my sowrd!
+终焉的试炼即将到来，作为一名有修养的剑士，虽然没有习得n刀流但是二刀流还是没问题的。然而我也是个剑的收藏者，家里屯着n把剑，每一把剑都有一个灵魂值a[i]，由于一些剑之间可能有共鸣，所以我需要两把契合度最高的剑。据剑圣所说，两把编号为i,j剑的契合度为a[i] and a[j]。如何深得剑的灵魂呢？(注：AND 为按位与运算，先将数转成二进制，不满位数的补全0，然后成为两个长度相同的二进制数，处理的时候，两个相应的二进制位都为1，该位的结果值才为1，否则为0。)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line">第一行一个整数n，代表藏剑数。</span><br><span class="line">第二行n个整数，第i个整数表示a[i]。</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line">输出包含一个正整数，最好的两把剑的契合度。</span><br><span class="line"></span><br><span class="line">Sample Input</span><br><span class="line">5</span><br><span class="line">12 5 6 3 1</span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line">4</span><br><span class="line">【样例解释】</span><br><span class="line">5 and 6=4或者12 and 5=4或者12 and 6=4</span><br><span class="line"></span><br><span class="line">Data Constraint</span><br><span class="line">对于40%的数据 n ≤ 1,000</span><br><span class="line">对于100%的数据 n ≤ 1,000,000，0 ≤ a[i] &lt; 2^31</span><br></pre></td></tr></table></figure></p>
+<p>看一下数据就可以得到暴力可以40分(<del>而不是想数论</del>)。我看着看着找到一个非常神奇的规律:如果a[i]和a[j]都是最大,或者是次..次次..次次次大的…并且保证a[i]和a[j]是同一个log层里面的,那么这个就是有可选性的答案。<del>天不负有心人</del>,20分成功被对手绝杀。</p>
+<p>这一题可以用某个大佬的数论过,我讲一下另一种简单的<del>数论</del>:先看一个定理:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a and b &lt;= max(a,b)</span><br></pre></td></tr></table></figure></p>
+<p>我们做出<strong>猜想</strong>,假设a和b是最大的,那么a and b才会大。</p>
+<p>然后就出现了这种做法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.Sort(a[1],a[2]...a[i]...a[n]); (从小到大或者从大到小要根据下面的步骤)</span><br><span class="line">2.(如果是从小到大,从大到小相反)</span><br><span class="line">for i:=n downto 1 do</span><br><span class="line">	for j:=i-1 downto 1 do</span><br><span class="line">    	if ans&lt;a[i] and a[j] then</span><br><span class="line">       		ans:=a[i] and a[j]</span><br><span class="line">        else</span><br><span class="line">      --&gt;break;</span><br></pre></td></tr></table></figure></p>
+<p>排序就是为了这个<strong>break</strong>,仔细想一想,还是<strong>线性复杂度</strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">理论复杂度:O(n log n+n^2) --&gt; O(n^2)</span><br><span class="line">实际复杂度:O(n log n+n(乘1)) --&gt; O(n log n)</span><br></pre></td></tr></table></figure></p>
+<h2 id="B-Group-T1-挑竹签-乱入"><a href="#B-Group-T1-挑竹签-乱入" class="headerlink" title="B-Group T1 挑竹签 (乱入)"></a>B-Group T1 挑竹签 (乱入)</h2><h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p><code>挑竹签——小时候的游戏
+夏夜，早苗和诹访子在月光下玩起了挑竹签这一经典的游戏。
+挑竹签，就是在桌上摆上一把竹签，每次从最上层挑走一根竹签。如果动了其他的竹签，就要换对手来挑。在所有的竹签都被挑走之后，谁挑走的竹签总数多，谁就胜了。
+身为神明的诹访子自然会让早苗先手。为了获胜，早苗现在的问题是，在诹访子出手之前最多能挑走多少竹签呢？
+为了简化问题，我们假设当且仅当挑最上层的竹签不会动到其他竹签。</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line">输入文件mikado.in。</span><br><span class="line">第一行输入两个整数n,m, 表示竹签的根数和竹签之间相压关系数。</span><br><span class="line">第二行到m+1 行每行两个整数u,v，表示第u 根竹签压住了第v 根竹签。</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line">输出文件mikado.out。</span><br><span class="line">一共一行，一个整数sum，表示最多能拿走sum 根竹签。</span><br><span class="line"></span><br><span class="line">Sample Input</span><br><span class="line">6 6</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">3 1</span><br><span class="line">4 3</span><br><span class="line">4 5</span><br><span class="line">6 5</span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line">3</span><br><span class="line">样例解释：</span><br><span class="line">一共有6 根竹签，其中1 压住2，2 压住3，3 压住1，4 压住3 和5，6 压住5。最优方案中，我们可以依次挑走4、6、5 三根竹签。而剩下的三根相互压住，都无法挑走。所以最多能挑走3 根竹签。</span><br><span class="line"></span><br><span class="line">Data Constraint</span><br><span class="line">对于20% 的数据，有1&lt;= n,m&lt;= 20。</span><br><span class="line">对于40% 的数据，有1 &lt;= n,m &lt;= 1 000。</span><br><span class="line">对于100% 的数据，有1 &lt;= n,m &lt;= 1 000 000。</span><br></pre></td></tr></table></figure></p>
+<p>这道题可以转换为<strong>判环</strong>问题。然后我们想到一种不用那么多Dfs有可行的方案——可以拓补排序! 如果节点有dep则这个点可以挑。一开始看题目看成B组,瞬间想到T1正解。</p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>以后不打贪心就可以了,要花一些时间来证正确性——It is important all for  us.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
