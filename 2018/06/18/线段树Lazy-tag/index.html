@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="线段树Lazy tag"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">线段树Lazy tag</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-18</span>
+            <span class="time">16:30:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>源码:</p>
+<h1 id="LAZY-区间修改一霸"><a href="#LAZY-区间修改一霸" class="headerlink" title="LAZY:区间修改一霸"></a>LAZY:区间修改一霸</h1><p>被Segment区间修改搞晕的蒟蒻们,看向这里······</p>
+<p>思路学习致敬:<a href="https://www.cnblogs.com/TheRoadToTheGold/p/6254255.html" target="_blank" rel="noopener">差不多算是转载才怪</a></p>
+<p>没有看过线段树的童鞋:<a href="https://www.luogu.org/blog/acking/xian-duan-shu-suan-fa" target="_blank" rel="noopener">ARFA’s blog</a></p>
+<p>致敬:在上一次线段树的讲解中我没有将l,r记录在数组中,这样无法实现LAZY,请注意。</p>
+<p>-</p>
+<h2 id="区间修改与LAZY思路"><a href="#区间修改与LAZY思路" class="headerlink" title="区间修改与LAZY思路"></a>区间修改与LAZY思路</h2><p>如果你想for i:=l to r do change你就太天真了,区间求和如果像刚才那样,速度几乎跟暴力没有什么区别。像要区间修改,一定要有整体(整棵树)的思想。</p>
+<p>LAZY就是“懒”的意思,打出程序后你会觉得它VERY懒,真的。LAZY的主要意思就是,如果你不会查询这一段的和,我就不给你加上add,当你真的要求的时候,我“临时”帮你加上add,然后蒙混过关。但是我的态度不好,你没有查全部的,我就完成你现在查的就行了,剩下的我还是不管。</p>
+<p>你会想,哎呦,这不是将改变和查询结为一体(其利断金)吗?我明确的告诉你,YNEOS。</p>
+<p>想要实现,必须明白几点。</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.从根往下改变,而不是叶子结点往上递归。</span><br><span class="line"><span class="number">2</span>.lazy是一个单独的数组,他会分配给他的左右儿子。</span><br><span class="line"><span class="number">3</span>.当我查到现在的l,r时候,inc(tree[k],···)</span><br></pre></td></tr></table></figure>
+<p>-</p>
+<h2 id="LAZY清楚的实例验证"><a href="#LAZY清楚的实例验证" class="headerlink" title="LAZY清楚的实例验证"></a>LAZY清楚的实例验证</h2><p><img src="http://dl.iteye.com/upload/attachment/196576/b34c84d9-7b8b-3f37-a66e-1d55100eaf9a.jpg" alt="">楚的实例验证</p>
+<p>看这幅图：</p>
+<p>如果1到8全部加1的话,会出现怎样的情况?</p>
+<p>我查询1到8的和,tree会增加8(公式是tree[k]+lazy[k]*(right[k]-left[k]+1))你懂的。</p>
+<p>由于lazy[1]被查到了,所以分给了lazy[2]和lazy[3]。</p>
+<p>第二次我查询2到3,想一想,lazy会被“推”到哪里?</p>
+<p>首先推到4和和5对不对?然后在5处消失。(其实5处没有儿子了)然后在4处推往8,因为到9处lazy也不见了。最后lazy的“残骸”就在1,1也就是8。</p>
+<p>就是这样的思路一步一步的将“残骸”推下去,是不是很“懒”?当然我称之为“懈怠推”。</p>
+<p>-</p>
+<h2 id="推理与实现"><a href="#推理与实现" class="headerlink" title="推理与实现"></a>推理与实现</h2><h5 id="首先是往下推的程序"><a href="#首先是往下推的程序" class="headerlink" title="首先是往下推的程序:"></a>首先是往下推的程序:</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">procedure <span class="title">SUC</span><span class="params">(k:int64)</span></span>;</span><br><span class="line">var</span><br><span class="line">        l,r:int64;</span><br><span class="line">begin</span><br><span class="line">        l:=k*<span class="number">2</span>;                <span class="comment">//给左儿子</span></span><br><span class="line">        r:=k*<span class="number">2</span>+<span class="number">1</span>;            <span class="comment">//给右儿子</span></span><br><span class="line">        inc(lazy[l],lazy[k]);             <span class="comment">//继续懒</span></span><br><span class="line">        inc(lazy[r],lazy[k]);            <span class="comment">//继续懒</span></span><br><span class="line">        inc(tree[l],lazy[k]*(right[l]-left[l]+<span class="number">1</span>));        <span class="comment">//实际加成</span></span><br><span class="line">        inc(tree[r],lazy[k]*(right[r]-left[r]+<span class="number">1</span>));        <span class="comment">//实际加成</span></span><br><span class="line">        lazy[k]:=<span class="number">0</span>;            <span class="comment">//清空本次LAZY</span></span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<h5 id="然后是区间修改"><a href="#然后是区间修改" class="headerlink" title="然后是区间修改:"></a>然后是区间修改:</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">procedure <span class="title">change</span><span class="params">(k:longint)</span></span>;</span><br><span class="line">    var</span><br><span class="line">            mid:int64;</span><br><span class="line">    begin</span><br><span class="line">            <span class="keyword">if</span> (left[k]&gt;=x)<span class="keyword">and</span>(right[k]&lt;=y) then    <span class="comment">//如果可以修改</span></span><br><span class="line">            begin</span><br><span class="line">                    inc(tree[k],add*(right[k]-left[k]+<span class="number">1</span>));<span class="comment">//公式</span></span><br><span class="line">                    inc(lazy[k],add);</span><br><span class="line">                    <span class="built_in">exit</span>;    <span class="comment">//返回</span></span><br><span class="line">            end;</span><br><span class="line">            <span class="keyword">if</span> lazy[k]&gt;<span class="number">0</span> then    <span class="comment">//还有LAZY的“残骸”</span></span><br><span class="line">                    SUC(k);        <span class="comment">//往下推</span></span><br><span class="line">            mid:=(left[k]+right[k]) div <span class="number">2</span>;    <span class="comment">//去儿子那边</span></span><br><span class="line">            <span class="keyword">if</span> x&lt;=mid then</span><br><span class="line">                    change(k*<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> y&gt;mid then</span><br><span class="line">                    change(k*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">            tree[k]:=tree[k*<span class="number">2</span>]+tree[k*<span class="number">2</span>+<span class="number">1</span>];    <span class="comment">//更新</span></span><br><span class="line">    end;</span><br></pre></td></tr></table></figure>
+<h5 id="对于区间求和的影响"><a href="#对于区间求和的影响" class="headerlink" title="对于区间求和的影响:"></a>对于区间求和的影响:</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">procedure <span class="title">look</span><span class="params">(k:longint)</span></span>;</span><br><span class="line">var</span><br><span class="line">        mid:int64;</span><br><span class="line">begin</span><br><span class="line">        <span class="keyword">if</span> (left[k]&gt;=x)<span class="keyword">and</span>(right[k]&lt;=y) then</span><br><span class="line">        begin</span><br><span class="line">                inc(find,tree[k]);</span><br><span class="line">                <span class="built_in">exit</span>;</span><br><span class="line">        end;</span><br><span class="line">        <span class="keyword">if</span> lazy[k]&gt;<span class="number">0</span> then</span><br><span class="line">                SUC(k);</span><br><span class="line">        mid:=(left[k]+right[k]) div <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> x&lt;=mid then</span><br><span class="line">                look(k*<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">if</span> y&gt;mid then</span><br><span class="line">                look(k*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<p>THANK EvErYBODY!</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

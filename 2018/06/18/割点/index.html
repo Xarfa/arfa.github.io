@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="割点"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">割点</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-18</span>
+            <span class="time">16:30:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/图论/">图论</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>源码:</p>
+<h1 id="割点"><a href="#割点" class="headerlink" title="割点"></a>割点</h1><p>by pascal<br><del>太腐图论了</del></p>
+<hr>
+<h2 id="割点的定义"><a href="#割点的定义" class="headerlink" title="割点的定义"></a>割点的定义</h2><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>其实就是删除一个图中的节点,然后所有连边删除,如图:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21293.png" alt=""></p>
+<h3 id="割点-1"><a href="#割点-1" class="headerlink" title="割点"></a>割点</h3><p>我们删除一个点,要使原本<strong>互通</strong>的两个(或以上)的节点<strong>不互通</strong>。(除非被删除的点本身) 如图:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21294.png" alt=""></p>
+<p>我们要注意:一个图中的割点可能是有<strong>多个解</strong>的。</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21295.png" alt=""></p>
+<hr>
+<h2 id="割点的解法"><a href="#割点的解法" class="headerlink" title="割点的解法"></a>割点的解法</h2><h2 id="I-枚举"><a href="#I-枚举" class="headerlink" title="I.枚举"></a>I.枚举</h2><p>我们可以试图割掉随意一个点,然后进行枚举看看连通性。这种方法非常简单,只不过<del>TLE</del>。如图:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21296.png" alt=""></p>
+<p>很显然如果数据太大,check就会直接爆掉!就此,我们寻找规律。</p>
+<h2 id="II-Tarjan"><a href="#II-Tarjan" class="headerlink" title="II.Tarjan"></a>II.Tarjan</h2><p>首先我们来认识<strong>DFS树</strong>是什么。</p>
+<p>我们知道,BFS的原理就是寻这一棵树横着找,而DFS就是竖着找。那么我们把<strong>树</strong>改成<strong>图</strong>,<del>会不会更神奇</del>。</p>
+<p>下图演示了BFS遍历图和DFS遍历图的特点:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21297.png" alt=""></p>
+<p>我们DFS遍历后的<strong>图</strong>改成<strong>树</strong>(先后次序):</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21300.png" alt=""></p>
+<p>我们引进一些<del>术语</del>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.树边:就是连接父子的边,也就是上图黑色的边</span><br><span class="line">2.回边:有些时候图不是完完全全的树,所以多出来的边就是回边,也就是红色的那个。</span><br><span class="line">3.(为了习惯所以叫)祖宗:父亲及以上。</span><br></pre></td></tr></table></figure></p>
+<h3 id="真·Tarjan"><a href="#真·Tarjan" class="headerlink" title="真·Tarjan"></a>真·Tarjan</h3><p>以下内容出自<a href="https://www.cnblogs.com/nullzx/archive/2017/12/04/7968110.html" target="_blank" rel="noopener">nullzx</a>。</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">显然如果节点U的所有孩子节点可以不通过父节点U而访问到U的祖先节点,</span><br><span class="line">那么说明此时去掉节点U不影响图的连通性,U就不是割点。</span><br><span class="line">相反,如果节点U至少存在一个孩子顶点，必须通过父节点U才能访问到U的祖先节点,</span><br><span class="line">那么去掉节点U后，顶点U的祖先节点和孩子节点就不连通了,说明U是一个割点。</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.luogu.org/upload/pic/21301.png" alt=""></p>
+<p>我们定义三个数组:<br><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dnf数组的下标表示顶点的编号，数组中的值表示该顶点在DFS中的遍历顺序(或者说时间戳)，每访问到一个未访问过的顶点，访问顺序的值（时间戳）就增加<span class="number">1</span>。</span><br><span class="line">子顶点的dfn值一定比父顶点的dfn值大（但不一定恰好大<span class="number">1</span>，比如父顶点有两个及两个以上分支的情况）。</span><br><span class="line">在访问一个顶点后，它的dfn的值就确定下来了，不会再改变。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">low数组的下标表示顶点的编号，数组中的值表示DFS中该顶点不通过父顶点能访问到的祖先顶点中最小的顺序值（或者说时间戳）。</span><br><span class="line">每个顶点初始的low值和dfn值应该一样，在DFS中，我们根据情况不断更新low的值。</span><br><span class="line">假设由顶点U访问到顶点V。当从顶点V回溯到顶点U时，</span><br><span class="line">如果</span><br><span class="line">dfn[v] &lt; low[u]</span><br><span class="line">那么</span><br><span class="line">low[u] = dfn[v]</span><br><span class="line">如果顶点U还有它分支，每个分支回溯时都进行上述操作，那么顶点low[u]就表示了不通过顶点U的父节点所能访问到的最早祖先节点。</span><br></pre></td></tr></table></figure>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parent数组:下标表示顶点的编号，数组中的值表示该顶点的父顶点编号，</span><br><span class="line">它主要用于更新low值的时候排除父顶点，当然也可以其它的办法实现相同的功能。</span><br></pre></td></tr></table></figure>
+<p><del>案例</del>: </p>
+<p><img src="https://images2018.cnblogs.com/blog/834468/201712/834468-20171204003437679-627504899.png" alt=""></p>
+<hr>
+<h2 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//140ms-太慢了!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// luogu-judger-enable-o2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Uses</span> math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        reach,next:<span class="keyword">array</span>[<span class="number">1</span>..<span class="number">200000</span>] <span class="keyword">of</span> longint;</span><br><span class="line">        cut:<span class="keyword">array</span>[<span class="number">1</span>..<span class="number">200000</span>] <span class="keyword">of</span> boolean;</span><br><span class="line">        cnt,dfn,low:<span class="keyword">array</span>[<span class="number">1</span>..<span class="number">100000</span>] <span class="keyword">of</span> longint;</span><br><span class="line">        n,m,ans,i,j,x,y,cn,tot:longint;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">add</span><span class="params">(x,y:longint)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        inc(tot);</span><br><span class="line">        reach[tot]:=y;</span><br><span class="line">        next[tot]:=cnt[x];</span><br><span class="line">        cnt[x]:=tot;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">tarjan</span><span class="params">(u,vv:longint)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        r,v,i:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        r:=<span class="number">0</span>;</span><br><span class="line">        inc(cn);</span><br><span class="line">        low[u]:=cn;</span><br><span class="line">        dfn[u]:=low[u];</span><br><span class="line">        i:=cnt[u];</span><br><span class="line">        <span class="keyword">while</span> i&lt;&gt;-<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                v:=reach[i];</span><br><span class="line">                <span class="keyword">if</span> dfn[v]=<span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">begin</span></span><br><span class="line">                        tarjan(v,vv);</span><br><span class="line">                        low[u]:=min(low[u],low[v]);</span><br><span class="line">                        <span class="keyword">if</span> (low[v]&gt;=dfn[u])<span class="keyword">and</span>(u&lt;&gt;vv) <span class="keyword">then</span></span><br><span class="line">                                cut[u]:=True;</span><br><span class="line">                        <span class="keyword">if</span> u=vv <span class="keyword">then</span></span><br><span class="line">                                inc(r);</span><br><span class="line">                <span class="keyword">end</span>;</span><br><span class="line">                low[u]:=min(low[u],dfn[v]);</span><br><span class="line">                i:=next[i];</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">if</span> (u=vv)<span class="keyword">and</span>(r&gt;=<span class="number">2</span>) <span class="keyword">then</span></span><br><span class="line">                cut[vv]:=True;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        filldword(cnt,sizeof(cnt) <span class="keyword">div</span> <span class="number">4</span>,maxlongint*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">read</span>(n,m);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">read</span>(x,y);</span><br><span class="line">                add(x,y);</span><br><span class="line">                add(y,x);</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> dfn[i]=<span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">                        tarjan(i,i);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> cut[i] <span class="keyword">then</span></span><br><span class="line">                        inc(ans);</span><br><span class="line">        writeln(ans);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> cut[i] <span class="keyword">then</span></span><br><span class="line">                        <span class="keyword">write</span>(i,<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+<hr>
+<p>好了大家我去腐数论去</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="倍增LCA"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">倍增LCA</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-18</span>
+            <span class="time">16:30:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>源码:</p>
+<h1 id="倍增LCA-by-pascal"><a href="#倍增LCA-by-pascal" class="headerlink" title="倍增LCA by pascal"></a>倍增LCA by pascal</h1><p>我们知道,一个一个往上跳的LCA是会TLE,这时就有了更快的LCA算法。</p>
+<h4 id="“倍增LCA”"><a href="#“倍增LCA”" class="headerlink" title="“倍增LCA”"></a>“倍增LCA”</h4><p>倍增LCA分为以下几个步骤:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.让2个节点跳到同一个深度,然后完事。</span><br><span class="line">2.一起往上跳,直到找到公共祖先,然后完事。</span><br></pre></td></tr></table></figure></p>
+<p>听起来好简单哦。</p>
+<hr>
+<h2 id="倍增"><a href="#倍增" class="headerlink" title="倍增"></a>倍增</h2><p>先请大家思考一下,是不是任何一个正整数都能被一些2的n次方加起来?</p>
+<p>答案是:可以的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">16=16</span><br><span class="line">15=8+2+4+1</span><br><span class="line">10=8+2</span><br><span class="line">5=4+1</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>那么,倍增的意思就是:<br><strong>每次以2的n次方跳跃!!</strong></p>
+<p>那么,显而易见,时间复杂度是 log 喽。</p>
+<p>我们用一个数组 get[i,j] 来存储 i号节点如果跳了2的j次方,到达的点的编号。<br><img src="http://images.cnblogs.com/cnblogs_com/wxl-Ezio/1173002/o_QQ%E5%9B%BE%E7%89%8720180320205056.png" alt=""></p>
+<h5 id="盗一张图来说"><a href="#盗一张图来说" class="headerlink" title="盗一张图来说:"></a>盗一张图来说:</h5><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">get[<span class="number">17</span>,<span class="number">0</span>]=<span class="number">14</span></span><br><span class="line">get[<span class="number">14</span>,<span class="number">1</span>]=<span class="number">7</span></span><br><span class="line">get[<span class="number">10</span>,<span class="number">2</span>]=<span class="number">1</span></span><br><span class="line">get[ <span class="number">7</span>,<span class="number">3</span>]=?? <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>我们可以发现其实get[i,0]就是平常的father[i]。</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get[i,<span class="number">1</span>]可以表示为get[i的father,<span class="number">0</span>],也就是get[get[i,<span class="number">0</span>],<span class="number">1</span>]</span><br><span class="line">get[i,<span class="number">2</span>]可以表示为get[get[i,<span class="number">1</span>],<span class="number">1</span>]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>那么我们可以发现一个类似的DP式子:<br><strong>get[i,j]:=get[get[i,j-1],j-1];</strong></p>
+<hr>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>操作有2个:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.LCA主题部分:</span><br><span class="line">	(1.跳到同一个深度。</span><br><span class="line">    (2.一起往上跳。</span><br><span class="line">    </span><br><span class="line">2.DFS部分:</span><br><span class="line">	(1.用来记录每一个节点的深度 dep[i] (dep[i]=dep[i的父亲]+1)</span><br><span class="line">    (2.记录get[i,j]</span><br></pre></td></tr></table></figure></p>
+<p>具体的看代码演示:</p>
+<h4 id="DFS部分"><a href="#DFS部分" class="headerlink" title="DFS部分:"></a>DFS部分:</h4><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">Dfs</span><span class="params">(cnt,fa:longint)</span>;</span> <span class="comment">//现在的节点cnt,父亲fa</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        i:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        dep[cnt]:=dep[fa]+<span class="number">1</span>;  <span class="comment">//更新深度</span></span><br><span class="line">        get[cnt,<span class="number">0</span>]:=fa;  <span class="comment">//get的fa,前面已讲</span></span><br><span class="line">        i:=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">repeat</span></span><br><span class="line">                inc(i); <span class="comment">//方++</span></span><br><span class="line">                get[cnt,i]:=get[get[cnt,i-<span class="number">1</span>],i-<span class="number">1</span>]; <span class="comment">//神奇de公式</span></span><br><span class="line">        <span class="keyword">until</span> lg[i]&gt;dep[cnt];  <span class="comment">//忘了介绍lg[i]=2的i次方,要预处理,大概i到21左右</span></span><br><span class="line">        i:=head[cnt]; <span class="comment">//链式前向星</span></span><br><span class="line">        <span class="keyword">while</span> i&lt;&gt;<span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">if</span> gt[i]&lt;&gt;fa <span class="keyword">then</span></span><br><span class="line">                        Dfs(gt[i],cnt); <span class="comment">//其他连边</span></span><br><span class="line">                i:=next[i];</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p>然后:</p>
+<h4 id="LCA部分"><a href="#LCA部分" class="headerlink" title="LCA部分"></a>LCA部分</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function Find(x_,y_:longint):longint; //两个节点 x_,y_</span><br><span class="line">var</span><br><span class="line">        i,x,y,t:longint;</span><br><span class="line">begin</span><br><span class="line">        x:=x_; y:=y_;</span><br><span class="line">        if dep[x_]&lt;dep[y_] then //交换深度,使y在高处</span><br><span class="line">        begin</span><br><span class="line">                x:=y_;</span><br><span class="line">                y:=x_;</span><br><span class="line">        end;</span><br><span class="line">        for i:=21 downto 0 do //一定是downto!!!(看前面事例)</span><br><span class="line">                if (dep[y]&lt;=dep[x]-lg[i]) then //让x跳到y处</span><br><span class="line">                        x:=get[x,i];</span><br><span class="line">        if x=y then</span><br><span class="line">                exit(x); //如果x已经是y了,那么y就是祖先了</span><br><span class="line">        for i:=21 downto 0 do //一定是downto!!</span><br><span class="line">                if get[x,i]&lt;&gt;get[y,i] then </span><br><span class="line">                //说明一点,如果我跳过了怎么办?那么我们就跳到祖先的下面(反正任何数都可以被2的n次方相加,对不对),然后直接返回此节点的父亲就得了</span><br><span class="line">                begin</span><br><span class="line">                        x:=get[x,i]; //大家一起跳</span><br><span class="line">                        y:=get[y,i];</span><br><span class="line">                end;</span><br><span class="line">        exit(get[x,0]);</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="CODE"><a href="#CODE" class="headerlink" title="CODE"></a>CODE</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span></span><br><span class="line">        get:<span class="keyword">array</span>[-<span class="number">1</span>..<span class="number">500010</span>,<span class="number">0</span>..<span class="number">21</span>] <span class="keyword">of</span> longint;</span><br><span class="line">        num,gt,head,next:<span class="keyword">array</span>[-<span class="number">1</span>..<span class="number">5000010</span>] <span class="keyword">of</span> longint;</span><br><span class="line">        lg:<span class="keyword">array</span>[<span class="number">0</span>..<span class="number">21</span>] <span class="keyword">of</span> longint;</span><br><span class="line">        dep:<span class="keyword">array</span>[-<span class="number">1</span>..<span class="number">500010</span>] <span class="keyword">of</span> longint;</span><br><span class="line">        i,n,m,l,r,root:longint;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">Main</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        i:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">read</span>(n,m,root);</span><br><span class="line">        dec(n);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">read</span>(l,r);</span><br><span class="line">                gt[<span class="number">2</span>*i]:=r;</span><br><span class="line">                next[<span class="number">2</span>*i]:=head[l];</span><br><span class="line">                head[l]:=<span class="number">2</span>*i;</span><br><span class="line">                gt[<span class="number">2</span>*i-<span class="number">1</span>]:=l;</span><br><span class="line">                next[<span class="number">2</span>*i-<span class="number">1</span>]:=head[r];</span><br><span class="line">                head[r]:=<span class="number">2</span>*i-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        lg[<span class="number">0</span>]:=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> <span class="number">21</span> <span class="keyword">do</span></span><br><span class="line">                lg[i]:=lg[i-<span class="number">1</span>]*<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Find</span><span class="params">(x_,y_:longint)</span>:</span>longint;</span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        i,x,y,t:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        x:=x_; y:=y_;</span><br><span class="line">        <span class="keyword">if</span> dep[x_]&lt;dep[y_] <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                x:=y_;</span><br><span class="line">                y:=x_;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">21</span> <span class="keyword">downto</span> <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> (dep[y]&lt;=dep[x]-lg[i]) <span class="keyword">then</span></span><br><span class="line">                        x:=get[x,i];</span><br><span class="line">        <span class="keyword">if</span> x=y <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">exit</span>(x);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">21</span> <span class="keyword">downto</span> <span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">if</span> get[x,i]&lt;&gt;get[y,i] <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">begin</span></span><br><span class="line">                        x:=get[x,i];</span><br><span class="line">                        y:=get[y,i];</span><br><span class="line">                <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">exit</span>(get[x,<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">Dfs</span><span class="params">(cnt,fa:longint)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        i:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        dep[cnt]:=dep[fa]+<span class="number">1</span>;</span><br><span class="line">        get[cnt,<span class="number">0</span>]:=fa;</span><br><span class="line">        i:=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">repeat</span></span><br><span class="line">                inc(i);</span><br><span class="line">                get[cnt,i]:=get[get[cnt,i-<span class="number">1</span>],i-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">until</span> lg[i]&gt;dep[cnt];</span><br><span class="line">        i:=head[cnt];</span><br><span class="line">        <span class="keyword">while</span> i&lt;&gt;<span class="number">0</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">if</span> gt[i]&lt;&gt;fa <span class="keyword">then</span></span><br><span class="line">                        Dfs(gt[i],cnt);</span><br><span class="line">                i:=next[i];</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">Answer</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">read</span>(l,r);</span><br><span class="line">        writeln(Find(l,r));</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        Main;</span><br><span class="line">        Dfs(root,-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">                Answer;</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

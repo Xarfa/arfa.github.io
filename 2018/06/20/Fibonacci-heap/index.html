@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Fibonacci heap"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Fibonacci heap</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-20</span>
+            <span class="time">16:30:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>源码: </p>
+<blockquote>
+<h1 id="Fibonacci-heap"><a href="#Fibonacci-heap" class="headerlink" title="Fibonacci heap"></a><del>Fibonacci</del> heap</h1></blockquote>
+<p>堆是一种很常见的完全二叉树,在这里我给大家<del>普及</del>一下Fibonacci heap。</p>
+<p>注明:本文的图片来自于<a href="https://www.cnblogs.com/skywang12345/p/3659060.html" target="_blank" rel="noopener">skywang12345</a>。</p>
+<hr>
+<h2 id="认识时间复杂度"><a href="#认识时间复杂度" class="headerlink" title="认识时间复杂度"></a>认识时间复杂度</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">斐波那契堆:</span><br><span class="line">MAKE_HEAP: O(<span class="number">1</span>)</span><br><span class="line">INSERT: O(<span class="number">1</span>)</span><br><span class="line">DELETE (DELETE-Key): O(log n)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="认识其定义"><a href="#认识其定义" class="headerlink" title="认识其定义"></a>认识其定义</h2><p>斐波那契堆用来实现优先队列,其作用是跟二项堆和堆一样的。不同于堆的是斐波那契堆是一个可并堆,时间复杂度还要比二项堆和堆快那么一点。</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21424.png" alt=""></p>
+<p>不难看出,斐波那契堆是由很多个”堆”组成的,也就是一个森林。也不难发现,每一个”堆”不是完全二叉树,而且子节点的数量是2^n。</p>
+<p>有一点要注意,<strong>成形</strong>的斐波那契堆不可以有子节点数量相同的两个堆。</p>
+<hr>
+<h2 id="认识存储结构"><a href="#认识存储结构" class="headerlink" title="认识存储结构"></a>认识存储结构</h2><p>既然是一个森林,那么我们就不能用普通的方法来存储。这里我们用到双向链表等。先定义几个数组:<br><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Key: 也就是值</span><br><span class="line">Left-link: 左边的兄弟(这里的兄弟指的就是同一个父亲的儿子)</span><br><span class="line">Right-link: 右边的兄弟</span><br><span class="line">Son: 其中一个孩子的节点(我习惯于最左边的,这样子新的孩子来了就比较方便)(记录一个孩子,因为双向链表:所以知道所有孩子)</span><br><span class="line">Father: 父亲</span><br></pre></td></tr></table></figure></p>
+<p>我们来看这幅图:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21425.png" alt=""></p>
+<p>可以看出上下的链表和左右的链表,这就是它的存储方式。</p>
+<hr>
+<h2 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h2><p>很简单,我们只要把众多的根中的min_place找出来,每一次插入,只要把值插入到min_place的左边或右边就可以了。(习惯性右边)</p>
+<p>还有一种说法,可以把最右边的根的位置记录下来,这样子也是可以的。</p>
+<p><img src="https://cdn.luogu.org/upload/pic/21426.png" alt=""></p>
+<hr>
+<h2 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h2><p>DELETE的真正意思就是取出最小值,完善堆,合并堆(前面说过了不能有两个子节点数量相同的堆,我们需要合并)。</p>
+<p>下面这幅图把<del>所有东西</del>一起讲出来了:</p>
+<p><img src="https://images0.cnblogs.com/i/497634/201404/111647556224983.jpg" alt=""></p>
+<p>我们也并不一定要搞两个堆来合并,可以一个堆。还要注意,插入的时候就不用合并了,我们等到DELETE的时候再合并。(合并后变成一个<strong>成形</strong>的斐波那契堆)</p>
+<hr>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>1.不写出我的<del>玄学代码pascal</del>。(<del>写不A</del>)</p>
+<p>2.时间复杂度真的会快!!!!!!(虽然O没有变)</p>
+<p>3.可以参见skywang12345的博客。</p>
+<p>4.Why is called Fibonacci heap?<br>自己讨论看看</p>
+<hr>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

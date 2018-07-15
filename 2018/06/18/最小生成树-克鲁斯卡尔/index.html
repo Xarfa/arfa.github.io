@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="最小生成树-克鲁斯卡尔"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">最小生成树-克鲁斯卡尔</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-18</span>
+            <span class="time">16:30:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/图论/">图论</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>源码:</p>
+<h1 id="Kruskal-K氏算法"><a href="#Kruskal-K氏算法" class="headerlink" title="Kruskal , K氏算法"></a>Kruskal , K氏算法</h1><p>相比与Prim,K似乎容易呢……(不妨去试一下P+Heap)。我是来解释一下呢,还是解释一下呢……</p>
+<p>AC记录:#10</p>
+<p>AC<br>0ms/5136KB</p>
+<h2 id="裸-克鲁斯卡尔-最小生成树"><a href="#裸-克鲁斯卡尔-最小生成树" class="headerlink" title="裸-克鲁斯卡尔-最小生成树"></a>裸-克鲁斯卡尔-最小生成树</h2><p>步骤:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.将边排序</span><br><span class="line">2.判断是否能插入此边,插入后做:</span><br><span class="line">    1.inc(ans,路径长度)</span><br><span class="line">    2.合并连通分支</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.blogfshare.com/wp-content/uploads/images/--Prim\_9EA9/image\_thumb\_5.png" alt=""></p>
+<p>意思是:你将边排了序,那么再判断是否能插入,当插入的边的个数为n-1的时候,就是最小生成树[贪心]。</p>
+<h2 id="如此的解释-对于插入"><a href="#如此的解释-对于插入" class="headerlink" title="如此的解释[对于插入]"></a>如此的解释[对于插入]</h2><p>背景:假如A是社会上的某个混混,他有很多老大。</p>
+<h3 id="达到什么条件插入"><a href="#达到什么条件插入" class="headerlink" title="达到什么条件插入?"></a>达到什么条件插入?</h3><p>A想跟B发生关系,但是他们的兄弟组合有规定,发生什么事情都要告诉老大先…A带着B去访问老大Y。Y叫A去见Z。但是他们没有带见面礼(100万什么的就免了),Z很不削。</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Z刻薄的说:</span><br><span class="line"><span class="number">1</span>.你们两个不能是同一个血型的...</span><br><span class="line"><span class="number">2</span>.看见B,我很眼熟,我怀疑是我某个亲戚的亲戚的亲戚的女儿,如果是,那千万不能跟你这种小混混发生关系。(查找根是否相同来判断是否是一个联通分支,如果是,那么说明这个点已经合并过了,再合并会增加路径,不是最少的了)</span><br></pre></td></tr></table></figure>
+<p>1.A大笑:当然不是一个血型的(Z怀疑他在吹牛)。(i&lt;&gt;j,i点不能是j点)</p>
+<p>2.A苦笑:那我怎么知道呢?</p>
+<h3 id="对于-刻薄的问题之2-的破解"><a href="#对于-刻薄的问题之2-的破解" class="headerlink" title="对于[刻薄的问题之2]的破解"></a>对于[刻薄的问题之2]的破解</h3><p>A经历[刀山火海],找到了B的大爷爷,他问:“那个面容猥琐的Z是你家的吗?”大爷爷果断的说:“保定不是”。终于，B和A发生了关系…</p>
+<p>但是有一个问题,大爷爷的辈份比Z高,也算加入了兄弟组合,他想当老大[另一个规矩]。Z说:“没关系,兄弟们都听我的,你当了只是摆一个架子而已”。</p>
+<p>[讲正事]这里很像一个并查集,A要找老大,B要找大爷爷,他们不是一个连通分支的,所以可以合并[没有合并过]。而这2点合并了,应该合成一个连通分支,可是A有老大也有小弟,B有妹妹也有大爷爷,所以直接让根合并不就可以了。让Z做老大,或者大爷爷做老大,他们就是一个连通分支了。</p>
+<h2 id="关于路径压缩"><a href="#关于路径压缩" class="headerlink" title="关于路径压缩"></a>关于路径压缩</h2><p>A每次和别人发生关系都要找Y才能找Z。A很不喜欢Y这个老大,于是他就拿着100kuai去见了Z,“我住在你家旁边好不好?”</p>
+<p>每一次找到根都可以直接把父节点指向根,这查找时就能很快。从[A]-[Y]-[Z]变为[A]-[Z],当然有些时候可以节省很多时间。</p>
+<h2 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解:"></a>代码详解:</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span></span><br><span class="line">        fa:<span class="keyword">array</span>[<span class="number">1</span>..<span class="number">30000</span>] <span class="keyword">of</span> longint;<span class="comment">//老大...</span></span><br><span class="line">        a,b,c:<span class="keyword">array</span>[<span class="number">1</span>..<span class="number">30000</span>] <span class="keyword">of</span> longint;<span class="comment">//b(起点)和c(终点)的长度为a</span></span><br><span class="line">        i,j,n,m,k,l,ans:longint;<span class="comment">//ans是答案</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">sort</span><span class="params">(l,r:longint)</span>;</span> <span class="keyword">var</span> i,j,s,t:longint; <span class="keyword">begin</span> i:=l; j:=r; s:=a[(l+r) <span class="keyword">div</span> <span class="number">2</span>]; <span class="keyword">repeat</span> <span class="keyword">while</span> a[i]&lt;s <span class="keyword">do</span> i:=i+<span class="number">1</span>; <span class="keyword">while</span> a[j]&gt;s <span class="keyword">do</span> j:=j-<span class="number">1</span>; <span class="keyword">if</span> i&lt;=j <span class="keyword">then</span> <span class="keyword">begin</span> t:=a[i]; a[i]:=a[j]; a[j]:=t; t:=b[i]; b[i]:=b[j]; b[j]:=t; t:=c[i]; c[i]:=c[j]; c[j]:=t;</span><br><span class="line">        inc(i); dec(j); <span class="keyword">end</span>; <span class="keyword">until</span> i&gt;=j; <span class="keyword">if</span> i&lt;r <span class="keyword">then</span> sort(i,r); <span class="keyword">if</span> j&gt;l <span class="keyword">then</span> sort(l,j); <span class="keyword">end</span>;</span><br><span class="line"><span class="comment">//pascal手打排序,不必在意。注意,路径用来排序时起点和终点也要换</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">start</span>;</span><span class="comment">//输入和排序,本人使用一维数组</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        t,p:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        p:=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">read</span>(n);</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">                fa[i]:=i;</span><br><span class="line">        <span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">for</span> j:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">                <span class="keyword">begin</span></span><br><span class="line">                        inc(p);</span><br><span class="line">                        b[p]:=i;</span><br><span class="line">                        c[p]:=j;</span><br><span class="line">                        <span class="keyword">read</span>(a[p]);</span><br><span class="line">                        <span class="keyword">if</span> i=j <span class="keyword">then</span></span><br><span class="line">                                a[p]:=maxlongint;</span><br><span class="line">                <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line">        sort(<span class="number">1</span>,n*n);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">(x:longint)</span>:</span>longint;<span class="comment">//找根...</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> fa[x]=x <span class="keyword">then</span></span><br><span class="line">                <span class="keyword">exit</span>(x)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                get:=get(fa[x]);<span class="comment">//递归father</span></span><br><span class="line">                fa[x]:=get;<span class="comment">//路径压缩</span></span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">min_way</span><span class="params">(x:longint)</span>;</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        i,j:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        i:=b[x];<span class="comment">//b点和c点要连边</span></span><br><span class="line">        j:=c[x];</span><br><span class="line">        <span class="keyword">if</span> (i&lt;&gt;j) <span class="keyword">then</span><span class="comment">//不是同一个点</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                fa[i]:=get(i);<span class="comment">//找老大</span></span><br><span class="line">                fa[j]:=get(j);<span class="comment">//找老大</span></span><br><span class="line">                <span class="keyword">if</span> (fa[i]&lt;&gt;fa[j]) <span class="keyword">then</span><span class="comment">//不是同一个组合(不是同一个连通分支)</span></span><br><span class="line">                <span class="keyword">begin</span></span><br><span class="line">                        inc(ans,a[x]);<span class="comment">//加上本路径</span></span><br><span class="line">                        fa[get(j)]:=fa[i];<span class="comment">//合并</span></span><br><span class="line">                <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">if</span> x=n*n <span class="keyword">then</span><span class="comment">//合并完成</span></span><br><span class="line">                <span class="keyword">exit</span>;</span><br><span class="line">        min_way(x+<span class="number">1</span>);<span class="comment">//下一个需要合并的边</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        start;</span><br><span class="line">        min_way(<span class="number">1</span>);</span><br><span class="line">        writeln(ans);</span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

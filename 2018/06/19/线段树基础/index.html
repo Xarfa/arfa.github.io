@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="线段树基础"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">线段树基础</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-06-19</span>
+            <span class="time">16:30:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/图论/">图论</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>源码:</p>
+<h1 id="lt-线段树算法介绍-gt"><a href="#lt-线段树算法介绍-gt" class="headerlink" title="&lt;线段树算法介绍&gt;"></a>&lt;线段树算法介绍&gt;</h1><p><img src="http://dl.iteye.com/upload/attachment/196564/edeb7986-abd1-3494-af91-410e6b915c58.jpg" alt=""></p>
+<h1 id="I引子"><a href="#I引子" class="headerlink" title="I引子"></a>I引子</h1><p>对于一般的求和的题目,你首先会想到的是:<strong>FOR</strong></p>
+<p>当然聪明的你,不会眼睁睁看着蒟蒻用暴力的,所用你在用心的教它:<strong>前缀和</strong></p>
+<p>哎呀,前缀和是一个好东西,查询快的窒息,但聪明的你双目无神炯炯的看着输入格式。</p>
+<p>~~将某个数加上x</p>
+<p>哇塞~~~~数据君,让数据来的更猛烈吧!</p>
+<p>这时,聪明如我的某某某,想到了一种非常遛逼的算法:那就是:<strong>线段树</strong>!</p>
+<h1 id="II思路"><a href="#II思路" class="headerlink" title="II思路"></a>II思路</h1><p>树型的结构可以让我们懂得并发现许多东西,接下来我来讲一下什么是线段树。</p>
+<p>这个结构具备两种特征:速度快(查询),速度快(修改)</p>
+<p>其实它是一种<strong>分治算法</strong>,把tree[k]分为tree[k乘2]和tree[k乘2+1]</p>
+<p>线段树中每一个叶子节点都代表着这些东西:</p>
+<p>tree[k]:表示第k个叶子(辅助l,r,等一下我告诉你,存储的时候只用一维k)</p>
+<p>l,r:表示l到r的和</p>
+<p>必须说明一点,mid是(l+r)/2,左儿子代表的是l到mid,也就是k乘2</p>
+<p>右儿子代表mid+1到r,也就是k乘2+1</p>
+<p><img src="http://dl.iteye.com/upload/attachment/196576/b34c84d9-7b8b-3f37-a66e-1d55100eaf9a.jpg" alt=""></p>
+<p>如图,红色分别为下标和值,黑色是l,r。</p>
+<p>k乘2是它的左儿子,k乘2+1是它的右儿子,这很符合o。</p>
+<p>都懂了改图,我由三部分进行讲解:</p>
+<p>1.make(建造树)</p>
+<p>2.change(修改)</p>
+<p>3.look(查询)</p>
+<h1 id="III做法"><a href="#III做法" class="headerlink" title="III做法"></a>III做法</h1><h4 id="1-make"><a href="#1-make" class="headerlink" title="1.make"></a>1.make</h4><p>首先我们要建立一颗树。</p>
+<p>从树的顶端往下找,到了最下面(叶子结点或叫做需要输入的“时机”)的时候,</p>
+<p>你就设置输入,然后它会递归往上,将每一个tree[k]都能加上tree[k乘2]和tree[k乘2]</p>
+<h4 id="2-change"><a href="#2-change" class="headerlink" title="2.change"></a>2.change</h4><p>改变一片叶子上面的树,其实很简单,跟make没什么区别。</p>
+<p>它的思路就是一路往下窜,拿到了最下面,加上所加的数,然后上来,每一个节点都要更新(tree[k]:=tree[k乘2]+tree[k乘2+1])。</p>
+<h4 id="3-look"><a href="#3-look" class="headerlink" title="3.look"></a>3.look</h4><p>这个思路需要你“意会”与“实践”了,意思是说,你当前的l,r如果可以(注意是可以而不是刚好)套进你要求的l到r的数,那inc(ans,tree[k]);exit(往上再早);</p>
+<p>这个exit是点睛之笔,它淋漓尽致的体现了线段树的*<del>速度美</del>*。</p>
+<h1 id="IIII代码"><a href="#IIII代码" class="headerlink" title="IIII代码"></a>IIII代码</h1><h4 id="1-make-1"><a href="#1-make-1" class="headerlink" title="1.make"></a>1.make</h4><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">make</span><span class="params">(l,r,k:longint)</span>;</span>  <span class="comment">//make tree</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        mid:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> l=r <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">read</span>(tree[k]);</span><br><span class="line">                <span class="keyword">exit</span>;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        mid:=(l+r) <span class="keyword">div</span> <span class="number">2</span>;</span><br><span class="line">        make(l,mid,k*<span class="number">2</span>);</span><br><span class="line">        make(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">        inc(tree[k],tree[k*<span class="number">2</span>]+tree[k*<span class="number">2</span>+<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="2-change-1"><a href="#2-change-1" class="headerlink" title="2.change"></a>2.change</h4><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">change</span><span class="params">(l,r,k,x,add:longint)</span>;</span> <span class="comment">//change for tree</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        mid:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> l=r <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                inc(tree[k],add);</span><br><span class="line">                bz:=true;</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line">        <span class="keyword">if</span> bz <span class="keyword">then</span></span><br><span class="line"><span class="keyword">exit</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                mid:=(l+r) <span class="keyword">div</span> <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> x&lt;=mid <span class="keyword">then</span></span><br><span class="line">                        change(l,mid,k*<span class="number">2</span>,x,add)</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        change(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>,x,add);</span><br><span class="line">                tree[k]:=tree[k*<span class="number">2</span>]+tree[k*<span class="number">2</span>+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="3-look-1"><a href="#3-look-1" class="headerlink" title="3.look"></a>3.look</h4><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">look</span><span class="params">(l,r,k,xx,yy:longint)</span>;</span> <span class="comment">//find answer</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">        mid:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (l&gt;=xx)<span class="keyword">and</span>(r&lt;=yy) <span class="keyword">then</span></span><br><span class="line">                inc(find,tree[k])<span class="comment">//find为答案</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">                mid:=(l+r) <span class="keyword">div</span> <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> x&lt;=mid <span class="keyword">then</span></span><br><span class="line">                        look(l,mid,k*<span class="number">2</span>,xx,yy);</span><br><span class="line">                <span class="keyword">if</span> y&gt;mid <span class="keyword">then</span></span><br><span class="line">                        look(mid+<span class="number">1</span>,r,k*<span class="number">2</span>+<span class="number">1</span>,xx,yy);</span><br><span class="line">        <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="线段树算法的讲解到此结束-希望对你有帮助"><a href="#线段树算法的讲解到此结束-希望对你有帮助" class="headerlink" title="线段树算法的讲解到此结束,希望对你有帮助!"></a>线段树算法的讲解到此结束,希望对你有帮助!</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
