@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="ARFA">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="模拟C组 7.9"/>
+  <meta property="og:title" content="AC自动机"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="ARFA"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">模拟C组 7.9</p>
+          <p class="title">AC自动机</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,14 +99,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2018-07-09</span>
+            <span class="date">2018-07-15</span>
             <span class="time">20:43:09</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/JZOI/">JZOI</a>
+<a href="/categories/数据结构/">数据结构</a>
 </span>
           
         </div>
@@ -114,13 +114,24 @@
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <h1 id="7-09-排名-25-29"><a href="#7-09-排名-25-29" class="headerlink" title="7.09 排名:25/29"></a>7.09 排名:25/29</h1><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0	【GDOI2003】删边</span><br><span class="line">1	【GDOI2003】骑士问题</span><br><span class="line">2	【GDOI2003】排列的编码</span><br><span class="line">3	【GDOI2003】求值</span><br></pre></td></tr></table></figure>
-<p>因为今天的题目都是GDOI,而且十分的水,这里就不详细讲解。</p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>如果可以并查集就用,其实直接输出一个数就可以。m - n + 1</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>本来看上去像一个过河卒,但是想一想可以Bfs。相当于马的遍历。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>康拓展开,字典序也就是全排列,高精度水。</p>
-<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>排序之后按i的奇偶来求和。</p>
+          <blockquote>
+<h2 id="AC自动机主要思想"><a href="#AC自动机主要思想" class="headerlink" title="AC自动机主要思想"></a>AC自动机主要思想</h2></blockquote>
+<p>   单模匹配的时候,我们往往可以运用kmp算法来进行匹配,时间复杂度相当可观。不过,在多模匹配时,kmp算法就显得力不从心。所以在1975年,贝尔实验室才产生了Aho-Corasick automaton,AC自动机这种算法。<br><a id="more"></a></p>
+<blockquote>
+<h3 id="讲讲kmp"><a href="#讲讲kmp" class="headerlink" title="讲讲kmp"></a>讲讲kmp</h3></blockquote>
+<p>   大家在学AC自动机之前一定知道kmp算法,以及其时间复杂度:O(m+n)。为什么怎么快?因为失匹配不是一步天涯,而是退后仅仅几步。AC自动机紧紧围绕这个特点进行操作。这也是AC自动机的优点之一。</p>
+<blockquote>
+<h3 id="讲讲Trie"><a href="#讲讲Trie" class="headerlink" title="讲讲Trie"></a>讲讲Trie</h3></blockquote>
+<p>   Trie就是大家熟悉的字典树,它的结构就是AC自动机的主体。如果还不知道Trie的不用慌,<a href="https://www.cnblogs.com/TheRoadToTheGold/p/6290732.html" target="_blank" rel="noopener">blog</a>,仔细看一看,主要看一看实现一段。</p>
+<p>   Trie的单词插入,查找,为字符串的一系列算法提供了强大作用。</p>
+<blockquote>
+<h3 id="回归AC自动机"><a href="#回归AC自动机" class="headerlink" title="回归AC自动机"></a>回归AC自动机</h3></blockquote>
+<p>   AC自动机并不是Accepted自动机,而是一种数据结构,一种算法。我们来主要讲一讲思想。</p>
+<p>   我们可以用kmp来后悔,同样也可以在Trie上后悔。我们可以建立Fail指针,当我们在Trie上匹配失败的时候,就可以转到fail指针上,然后继续匹配。这样子也就大大减少了时间复杂度,并且思路及其简单。</p>
+<p>   但是有时候我们想不通如何匹配,我们建Trie的是匹配串而不是被匹配串。其实我们对一个root的子节点一直搜到树的底部,一旦失陪,立即转向fail指针就可以了。同理,如果匹配到底面了,同样可以走fail指针。所以就说AC自动机是kmp+Trie,名不虚传。</p>
+<p>   那么我们只剩一个问题了:如何建立fail指针?</p>
+<p>   首先,根节点的fail指针可以连向自己,也可以连向一个”假点”,node[0]。然后我们按照Bfs序来搜索。<br>   但我们搜索到点u的时候,看一看它的父亲fail的点的fail的点…反正是最高的”fail点”,然后看它有没有连向一个点v,并且边的char(string等等)是否更u的父亲到它的边的char一样。<br>   如果一样,说明这个点可以成为u的fail指针连向点,同时也是最优(唯一?)的fail点。下面的ppt有非常详细的过程,可以参观orz…</p>
+<p>   <a href="https://files.cnblogs.com/files/crazyacking/AC自动机基础入门.ppt" target="_blank" rel="noopener">某一个Dalao的ppt链接</a>,可以参考。</p>
 
         </div>
       </div>
