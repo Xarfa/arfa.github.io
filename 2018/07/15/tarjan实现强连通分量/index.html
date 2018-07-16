@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-07-15</span>
-            <span class="time">20:46:15</span>
+            <span class="time">09:31:58</span>
           </span>
           
           <!--  Categories  -->
@@ -115,12 +115,11 @@
         <!-- Post Main Content -->
         <div class="post-content">
           <blockquote>
-<h2 id="tarjan实现强联通分量"><a href="#tarjan实现强联通分量" class="headerlink" title="tarjan实现强联通分量"></a>tarjan实现强联通分量</h2><a id="more"></a>
-<ul>
+<h2 id="tarjan实现强联通分量"><a href="#tarjan实现强联通分量" class="headerlink" title="tarjan实现强联通分量"></a>tarjan实现强联通分量</h2><ul>
 <li>图论</li>
 </ul>
 </blockquote>
-<h3 id="定义-强联通分量"><a href="#定义-强联通分量" class="headerlink" title="定义:强联通分量"></a>定义:强联通分量</h3><p>在有向图中,一个<strong>强联通分量</strong>就代表这个图中某个区域任意点可以到达任意点。以此类推,两点直接或间接联通就叫做<strong>强联通</strong>。</p>
+<h3 id="定义-强联通分量"><a href="#定义-强联通分量" class="headerlink" title="定义:强联通分量"></a>定义:强联通分量</h3><p>在有向图中,一个<strong>强联通分量</strong>就代表这个图中某个区域任意点可以到达任意点。以此类推,两点直接或间接联通就叫做<strong>强联通</strong>。<br><a id="more"></a></p>
 <h3 id="Tarjan实现"><a href="#Tarjan实现" class="headerlink" title="Tarjan实现"></a>Tarjan实现</h3><p>很简单,Dfs序先标一个号。如果点u的儿子可以达到点u甚至点u的父亲,爷爷..祖先,那么这一块都是可以互相联通的,如图:</p>
 <p><img src="https://cdn.luogu.org/upload/pic/23590.png" alt=""></p>
 <p>如此类推,tarjan就出来了,如果不懂或者需要标称,参见:<a href="https://blog.csdn.net/qq_34374664/article/details/77488976" target="_blank" rel="noopener">Blog</a>。</p>
