@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="arfa在JZOI考试中获得的知识点技巧"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">arfa在JZOI考试中获得的知识点技巧</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-16</span>
+            <span class="time">18:10:26</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/JZOI/">JZOI</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<h2 id="从JZOI考试中提取出来的技巧-知识点"><a href="#从JZOI考试中提取出来的技巧-知识点" class="headerlink" title="从JZOI考试中提取出来的技巧/知识点"></a>从JZOI考试中提取出来的技巧/知识点</h2></blockquote>
+<p>一个蒟蒻的提高组经历:</p>
+<blockquote>
+<h3 id="1-矩阵乘法"><a href="#1-矩阵乘法" class="headerlink" title="1.矩阵乘法"></a>1.矩阵乘法</h3></blockquote>
+<p>这个很简单,只要记住左边的矩阵从第1行开始乘右边的矩阵的列就OK了,在讲讲几个性质:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A*B&lt;&gt;B*A</span><br><span class="line">(A*B)*C=A*(B*C)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h3 id="2-Floyd式DP"><a href="#2-Floyd式DP" class="headerlink" title="2.Floyd式DP"></a>2.Floyd式DP</h3></blockquote>
+<p>我们可以根据前面的两个,或者后面的两个,或者中间断开来求出我们现在需要的值,如Floyd本身:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table[i,j]:=min(table[i,j],table[i,k]+table[k,j]);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h3 id="3-哈夫曼树"><a href="#3-哈夫曼树" class="headerlink" title="3.哈夫曼树"></a>3.哈夫曼树</h3></blockquote>
+<p>为什么从树的节点到根的距离乘上本身的值的总和的最小值可以用合并果子做?因为他让最大的再最上面,所以只有一次,其次是第二小两次,第三小两次…这样子符合问题。(或许有一点难理解,多思考)</p>
+<blockquote>
+<h3 id="4-Bfs状态性质"><a href="#4-Bfs状态性质" class="headerlink" title="4.Bfs状态性质"></a>4.Bfs状态性质</h3></blockquote>
+<p>当我们可以从一个状态转移到另一个状态求解的时候,注意可以用DP,也可以DFS或者BFS,当然平常的时候BFS回更加优越。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">状态1 --&gt; 状态2    (加入队列)</span><br><span class="line">      --&gt; 状态3</span><br><span class="line">      --&gt; 状态4</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="5-hash"><a href="#5-hash" class="headerlink" title="5.hash"></a>5.hash</h3></blockquote>
+<p>当我们有一个非常大的数的时候(十进制?)我们可以使用hash。<br>我们可以用一个梅森素数或者一个百万级的素数来进行hash,如果觉得还不行,我们可以选择多个hash函数进行bool存储。</p>
+<blockquote>
+<h3 id="6-拓扑排序技巧-节选"><a href="#6-拓扑排序技巧-节选" class="headerlink" title="6.拓扑排序技巧(节选)"></a>6.拓扑排序技巧(节选)</h3></blockquote>
+<p>首先,拓扑排序只能对于有向无环图。不过,我们想判断哪些点没有在环里面的时候,我们可以用到拓扑排序。还有,如果一个点的dep没有另一个点的dep高的话,它是去不到另一个点的。</p>
+<blockquote>
+<h3 id="7-删边"><a href="#7-删边" class="headerlink" title="7.删边"></a>7.删边</h3></blockquote>
+<p>一张强连通图有多少个多余的边?我们只需要求出最少的边数:点数,然后减去就可以了。</p>
+<blockquote>
+<h3 id="8-GCD技巧-节选"><a href="#8-GCD技巧-节选" class="headerlink" title="8.GCD技巧(节选)"></a>8.GCD技巧(节选)</h3></blockquote>
+<p>当转移状态太慢的时候,我们可以考虑mod这个神奇的东西。而GCD一次操作的费用记得要求出来。</p>
+<blockquote>
+<h3 id="9-主席数的性质-节选"><a href="#9-主席数的性质-节选" class="headerlink" title="9.主席数的性质(节选)"></a>9.主席数的性质(节选)</h3></blockquote>
+<p>众所周知的主席数可以实现可持久化线段树,它也可以维护可持久化数组。时间复杂度和空间复杂度知识大一个log而已。</p>
+<blockquote>
+<h3 id="10-差分约束系统-节选"><a href="#10-差分约束系统-节选" class="headerlink" title="10.差分约束系统(节选)"></a>10.差分约束系统(节选)</h3></blockquote>
+<p>借用一下大佬的<a href="https://blog.csdn.net/my_sunshine26/article/details/72849441" target="_blank" rel="noopener">博客</a>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">I.定义:</span><br><span class="line">如果一个系统由n个变量和m个约束条件组成，形成m个形如ai-aj≤k的不等式(i,j∈[1,n],k为常数),</span><br><span class="line">则称其为差分约束系统。</span><br><span class="line"></span><br><span class="line">II.关联:</span><br><span class="line">if(dis[u]+w(u,v)&lt;=dis[v])</span><br><span class="line">&#123;</span><br><span class="line">    dis[v]=dis[u]+w(u,v);</span><br><span class="line">&#125;</span><br><span class="line">这不正与松弛操作相似吗？但是好像不等号方向刚好相反，</span><br><span class="line">但其实这并不矛盾。</span><br><span class="line"></span><br><span class="line">上面的代码要实现的是使dis[u]+w(u,v)&gt;dis[v],而对于不等式，</span><br><span class="line">我们进行建边的操作：对于每个不等式 x[i] - x[j] &lt;= a[k]，对结点 j 和 i 建立一条 j -&gt; i的有向边，边权为a[k]，求x[n-1] - x[0] </span><br><span class="line">的最大值就是求 0 到n-1的最短路，两者刚好吻合。所以求解差分约束问题就转化为了最短路问题。</span><br><span class="line"></span><br><span class="line">III.存在性</span><br><span class="line">(1）、存在负环</span><br><span class="line"></span><br><span class="line">如果路径中出现负环，就表示最短路可以无限小，即不存在最短路，那么在不等式上的表现即X[n-1] - X[0] &lt;= T中的T无限小，</span><br><span class="line">得出的结论就是 X[n-1] - X[0]的最大值不存在。在SPFA实现过程中体现为某一点的入队次数大于节点数。（貌似可以用sqrt(num_node)</span><br><span class="line">来代替减少运行时间）</span><br><span class="line"></span><br><span class="line">(2）、终点不可达</span><br><span class="line"></span><br><span class="line">这种情况表明X[n-1]和X[0]之间没有约束关系，X[n-1] - X[0]的最大值无限大，即X[n-1]和X[0]的取值有无限多种。</span><br><span class="line">在代码实现过程中体现为dis[n-1]=INF。</span><br><span class="line"></span><br><span class="line">IV.应用</span><br><span class="line">对于不同的题目，给出的条件都不一样，我们首先需要关注问题是什么，</span><br><span class="line">如果需要求的是两个变量差的最大值，那么需要将所有不等式转变成&quot;&lt;=&quot;的形式，建图后求最短路；相反，如果需要求的是两个变量差的最小值，</span><br><span class="line">那么需要将所有不等式转化成&quot;&gt;=&quot;，建图后求最长路。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="11-运算符的快速解法"><a href="#11-运算符的快速解法" class="headerlink" title="11.运算符的快速解法"></a>11.运算符的快速解法</h3></blockquote>
+<p>n个数对m个数进行运算取出最值。有些时候是可以排序的,所以我们可以用贪心的思想来解决这些题目。同时,我们也可以建造二进制Trie(也可以叫哈夫曼编码)。如果是and那么照相同,如果是xor就找不同。</p>
+<blockquote>
+<h3 id="12-学会非主流线段树"><a href="#12-学会非主流线段树" class="headerlink" title="12.学会非主流线段树"></a>12.学会非主流线段树</h3></blockquote>
+<p>线段树需要学会的很简单:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">I.知道要维护什么。</span><br><span class="line">II.知道怎么维护。</span><br></pre></td></tr></table></figure></p>
+<p>一般我们维护的都是很简单的东西,而我们上面提出的说起来简单,做起来就非常困难。知道要维护什么,如【NOIP2015模拟10.28B组】圣章-精灵使的魔法语 这道题,考场上又有多少人知道维护什么呢?在像这道题:1384. Alice的游戏 (Standard IO)(JZOJ)谁又知道要建造10颗线段树来维护?所以我们要练就的就是OI思想,区间问题好好思考以上两个东西。</p>
+<blockquote>
+<h3 id="13-学会找规律"><a href="#13-学会找规律" class="headerlink" title="13.学会找规律"></a>13.学会找规律</h3></blockquote>
+<p>真正一套题都是找规律,这种题目你们见过吗?规律是很重要的,它运用于各种操作,比如:数论,加速,答案,大打表之术等等。当你找不出正解又觉得这一题很水的时候,先做其它的题目,返回来再做这道题。其次,要把样例输入和样例输出仔细研究!</p>
+<blockquote>
+<h3 id="14-SG函数"><a href="#14-SG函数" class="headerlink" title="14.SG函数"></a>14.SG函数</h3></blockquote>
+<p>这个就不是很懂,我只会Bash和Nimm而已,说一下<a href="https://www.cnblogs.com/ECJTUACM-873284962/p/6921829.html" target="_blank" rel="noopener">大佬</a>的定义:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">游戏和的SG函数等于各个游戏SG函数的Nim和。这样就可以将每一个子游戏分而治之，从而简化了问题。而Bouton定理就是Sprague-Grundy定理在Nim游戏中的直接应用，因为单堆的Nim游戏 SG函数满足 SG(x) = x。对博弈不是很清楚的请参照http://www.cnblogs.com/ECJTUACM-873284962/p/6398385.html进行进一步理解。</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h3 id="15-二维前缀和"><a href="#15-二维前缀和" class="headerlink" title="15.二维前缀和"></a>15.二维前缀和</h3></blockquote>
+<p>我们想求出(很多次,很多个)一个区间的值,一般都是运用到二维前缀和。<br>而二维前缀和也一般有这样一个模式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">I.代表全局的-代表某一个区域的=答案</span><br><span class="line">II.代表全局的-代表某一个区域的*2+(前面减了两次,所以加上)某一个重复减去的区域</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<h3 id="16-tarjan"><a href="#16-tarjan" class="headerlink" title="16.tarjan"></a>16.tarjan</h3></blockquote>
+<p>在强联通分量和割点,割边,点双,边双等总多领域中,tarjan使用树中的规律来求出答案,详见博客?</p>
+<blockquote>
+<h3 id="17-后缀数组排序"><a href="#17-后缀数组排序" class="headerlink" title="17.后缀数组排序"></a>17.后缀数组排序</h3></blockquote>
+<p>倍增排序省去了很多时间,当然CD3也是很强的,详见博客?</p>
+<blockquote>
+<h3 id="18-AC自动机"><a href="#18-AC自动机" class="headerlink" title="18.AC自动机"></a>18.AC自动机</h3></blockquote>
+<p>把kmp思想运用到Trie中,这样AC自动机就产生了,详见博客?</p>
+<p>以上内容大部分在我的博客中有出现(我在JZOI的十天),细节可以随时翻阅。</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
