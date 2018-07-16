@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-07-16</span>
-            <span class="time">19:13:46</span>
+            <span class="time">19:36:32</span>
           </span>
           
           <!--  Categories  -->
@@ -129,8 +129,8 @@
 <h4 id="III-How-was-the-food"><a href="#III-How-was-the-food" class="headerlink" title="III.How was the food?"></a>III.How was the food?</h4><p>一定要记住,5元的菜华而不实,6元的菜稀有难见,3元的菜吃不饱,只有3.5,4元的才是最经济且最好的!!!!!!<br>(注明:1.5的通心菜量最多,3.5元的肉末豆腐吃的最快最实惠,4元酱香鸡是最好吃的,吃完饭禁忌喝任何小卖部饮料,不然你就会变成望庐山瀑布)</p>
 <p>好吧,其实豆腐的能量很多,建议吃士力架。</p>
 <blockquote>
-<h3 id="Come-bake-about-OI"><a href="#Come-bake-about-OI" class="headerlink" title="Come bake about OI"></a>Come bake about OI</h3><p>学了些什么?我不是讲了吗?<br>不过发现我会很多东西,比如主席树,最大流/费用流,哈密尔,割点都是很多人不会的,不过就是没有考什么好分数,所以一直属于<del>颓废</del>状态。</p>
-</blockquote>
+<h3 id="Come-bake-about-OI"><a href="#Come-bake-about-OI" class="headerlink" title="Come bake about OI"></a>Come bake about OI</h3></blockquote>
+<p>学了些什么?我不是讲了吗?<br>不过发现我会很多东西,比如主席树,最大流/费用流,哈密尔,割点都是很多人不会的,不过就是没有考什么好分数,所以一直属于<del>颓废</del>状态。</p>
 <p>然后说一下生活细节:<br>早上起来大叫一声fu(此字母自行脑补)k,然后快速刷牙。JZOI的厕所是肮脏而不失凌乱的,还有里面神秘而不是优雅的气味让人永生难忘。所以我们练就了一身的快速刷牙,快速洗澡,快速上厕所,一般都是O(1)实现的,像我这种蒟蒻可能就要O(log k)来实现了(k为常数)。去吃早餐,早餐有很多面包之类的,然我想起三鑫,所以就没有吃过面包——除了远近闻名的肠仔包以外。一般吃炒河粉,而且连续10天都如此。</p>
 <p>早上考试,不是很喜欢打表,不过被生活压迫着,就不得不打表。有些时候还是会有好成绩的吧,我想,多考图论,少考DP,我就可以AK。不过并不然,我们的管理员ROOT一共A了将近3000道题,数量最高的是DP。所以我不得不在初二的时候努力加紧DP训练。</p>
 <p>中午又去吃饭,经常回去小卖部卖东西吃。还有午休,<del>一般我都会腐败</del>。</p>
@@ -139,8 +139,8 @@
 <p>半夜,夜话不断,宿管一夜破门3次以上,使得我们压制不住内心的骚动。但我还是坚持<del>腐败</del>。晚上10点左右回去,可以改题改到10:40。晚上可以去吃夜宵,有鸡肠,肉串,鸡扒什么之类的,很难想到JZ怎么强(虽然好几年前就吃过log(4)次)</p>
 <p><a href="https://www.luogu.org/space/show?uid=37598" target="_blank" rel="noopener">ZJL大佬</a>上了log k(都说了k为常数)次厕所后,我就入睡了,迎接下一天的考试。</p>
 <blockquote>
-<h3 id="Problem-sets"><a href="#Problem-sets" class="headerlink" title="Problem sets"></a>Problem sets</h3><p>下面的都是福利啊!!!!</p>
-</blockquote>
+<h3 id="Problem-sets"><a href="#Problem-sets" class="headerlink" title="Problem sets"></a>Problem sets</h3></blockquote>
+<p>下面的都是福利啊!!!!</p>
 <h1 id="7-06-排名-11-11"><a href="#7-06-排名-11-11" class="headerlink" title="7.06 排名:11/11"></a>7.06 排名:11/11</h1><h2 id="T1-矩阵"><a href="#T1-矩阵" class="headerlink" title="T1 矩阵"></a>T1 矩阵</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><code>N(2&lt;=N&lt;=500)个矩阵相乘，求进行乘法的最少次数，我们认为两个矩阵A(m*n)*B(n*p)的乘法次数为m*n*p次。</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Input</span><br><span class="line"></span><br><span class="line">　　输入文件的第1行有两个正整数n和k，描述了圆环上的格子数与取数的范围。</span><br><span class="line">　　第2行有n个正整数，按顺时针方向描述了圆环上每个格子上的数，且指针一开始指向了第1个数字所在的格子。</span><br><span class="line">　　所有整数之间用一个空格隔开，且不超过10000。</span><br><span class="line"></span><br><span class="line">Output</span><br><span class="line"></span><br><span class="line">　　输出文件仅包括1个整数，为取完所有数的最小代价。</span><br><span class="line"></span><br><span class="line">Sample Input</span><br><span class="line"></span><br><span class="line">6 1</span><br><span class="line">4 1 2 3 1 3</span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line"></span><br><span class="line">21</span><br></pre></td></tr></table></figure>
 <p>运用一些dp(类似于floyd)常识和矩阵乘法的原理。</p>
