@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="后缀数组排序浅谈"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">后缀数组排序浅谈</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-16</span>
+            <span class="time">11:30:07</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote>
+<h2 id="后缀数组排序浅谈"><a href="#后缀数组排序浅谈" class="headerlink" title="后缀数组排序浅谈"></a>后缀数组排序浅谈</h2></blockquote>
+<p>后缀排序服务后缀数组,可以解决众多的字符串问题,如:后缀的最大公共前缀、可重叠最长重复子串、不可重叠最长重复子串、本质不同的子串的数量(参考自自为风月马前卒)。这里就来讲一下如何对后缀数组进行排序。<br><a id="more"></a></p>
+<blockquote>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3></blockquote>
+<h4 id="I-后缀、后缀数组-Suffix-array"><a href="#I-后缀、后缀数组-Suffix-array" class="headerlink" title="I.后缀、后缀数组(Suffix array)"></a>I.后缀、后缀数组(Suffix array)</h4><p>本质就是i(1&lt;=i&lt;=len(S))以后的字符串G(G是字符串S的子串),那么G就是S的后缀。举一个例子,aabbc的后缀有这些:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.a</span><br><span class="line">2.aa</span><br><span class="line">3.aab</span><br><span class="line">4.aabb</span><br><span class="line">5.aabbc (注意是包括它自己的)</span><br></pre></td></tr></table></figure></p>
+<p>那么顾名思义,后缀数组就是存储字符串S的后缀的数组。</p>
+<h4 id="II-枚举排序方法"><a href="#II-枚举排序方法" class="headerlink" title="II.枚举排序方法"></a>II.枚举排序方法</h4><p>1.可以用各种普通的数字排序法,比如基数排序,快速排序,堆排序等等…</p>
+<p>2.运用倍增排序法(Double Algorithm),时间复杂度为O(n log n)。</p>
+<p>3.运用CD3(三分算法、Difference Cover moudlo 3),官方认为是O(n*k),其中k为一个未知而可怕的常数。个人认为是O(n+2/3n log 2/3n)。(n代表的是字符串S的后缀个数)</p>
+<blockquote>
+<h3 id="讲解并分析以上排序方法"><a href="#讲解并分析以上排序方法" class="headerlink" title="讲解并分析以上排序方法"></a>讲解并分析以上排序方法</h3></blockquote>
+<h4 id="I类-暴力排序-n-n-log-n-2-gt-n-n-2"><a href="#I类-暴力排序-n-n-log-n-2-gt-n-n-2" class="headerlink" title="I类.暴力排序 (n+n log n^2) -&gt; (n+n^2)"></a>I类.暴力排序 (n+n log n^2) -&gt; (n+n^2)</h4><p>什么,暴力?O(len log len)还想怎么样?那你就大错特错了,因为2个字符串比较是需要len的时间的,所以快速排序等O(n log n)的排序就会变为:O(len log len^2)。而一开始需要提取后缀,只需弄一个前缀和就可以了,所以是len。</p>
+<p>当然,如果使用基数排序是可以达到len^2,详见My Luogu 博客?所以对于<strong>数字</strong>的排序运用到<strong>字符串</strong>上面,吃亏不小。</p>
+<h4 id="II类-倍增排序-n-log-n"><a href="#II类-倍增排序-n-log-n" class="headerlink" title="II类.倍增排序 (n log n)"></a>II类.倍增排序 (n log n)</h4><p>这种排序甚至连后缀都不用提取,因为它直接把序号存储到一个数组里面。排完序的数组a[i]就是代表以i为起点的后缀在字符串S中的字典序排名。</p>
+<p>那么我们如何排序,按照步骤来说:</p>
+<p>我们先把原本的<strong>每一个字符</strong>全部按照字典序给一个编号,编号数组为num[i]。然后创建一个存储2^k的数组log,log[0]=1,log[10]=1024 (log[k]=2^k)。其次我们把num[i]和num[log[j]+i-1]合并为num[i],其中j就是我们现在已经排序了几次,举一个上面的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aabaab -&gt; 编号数组num [1,1,2,1,1,2] , 合并,j=1,log[j]=2。</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://cdn.luogu.org/upload/pic/23660.png" alt=""></p>
+<p>然后我们对合并后的数组进行再一次排序:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/23662.png" alt=""></p>
+<p>然后继续合并,注意j已经是2了:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/23664.png" alt=""></p>
+<p>宏观图片就是:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/23666.png" alt=""></p>
+<p>边界问题,<del>应该是log n次吧</del>。最后的num数组就是排完序的了。然后平时单、双、多字符是可以用基数排序的吧。</p>
+<h4 id="III类-CD3-3分算法排序-n-2-3n-log-2-3n-n"><a href="#III类-CD3-3分算法排序-n-2-3n-log-2-3n-n" class="headerlink" title="III类.CD3 3分算法排序 (n+2/3n log 2/3n) / (n)"></a>III类.CD3 3分算法排序 (n+2/3n log 2/3n) / (n)</h4><p>其实很简单,就是把i mod 3=0的后缀全部取出来,不参与排序。然后对那些i mod 3&lt;&gt;0的后缀进行倍增排序,最后把i mod 3=0的后缀合并一下(归并排序)。</p>
+<p>这种方法真的是<del>SAO</del>,代码复杂度也是很强。不过理论复杂度要好很多吧。(注意常数问题)</p>
+<blockquote>
+<h3 id="参考博客、PPT"><a href="#参考博客、PPT" class="headerlink" title="参考博客、PPT"></a>参考博客、PPT</h3></blockquote>
+<blockquote>
+<p>I <a href="https://www.cnblogs.com/victorique/p/8480093.html" target="_blank" rel="noopener">~victorique~</a></p>
+</blockquote>
+<blockquote>
+<p>II <a href="http://www.cnblogs.com/zwfymqz/p/8413523.html" target="_blank" rel="noopener">自为风月马前卒</a></p>
+</blockquote>
+<blockquote>
+<p>III <a href="https://www.cnblogs.com/jianglangcaijin/p/6035937.html" target="_blank" rel="noopener">Only the Strong Survive/将狼踩尽</a></p>
+</blockquote>
+<blockquote>
+<p>IV <a href="https://wenku.baidu.com/view/6408bd9203d8ce2f01662317.html" target="_blank" rel="noopener">PPT</a></p>
+</blockquote>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

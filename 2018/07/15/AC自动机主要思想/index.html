@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="ARFA">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="AC自动机"/>
+  <meta property="og:title" content="AC自动机主要思想"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="ARFA"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">AC自动机</p>
+          <p class="title">AC自动机主要思想</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-07-15</span>
-            <span class="time">09:58:36</span>
+            <span class="time">11:30:07</span>
           </span>
           
           <!--  Categories  -->
@@ -116,7 +116,7 @@
         <div class="post-content">
           <blockquote>
 <h2 id="AC自动机主要思想"><a href="#AC自动机主要思想" class="headerlink" title="AC自动机主要思想"></a>AC自动机主要思想</h2></blockquote>
-<p>   单模匹配的时候,我们往往可以运用kmp算法来进行匹配,时间复杂度相当可观。不过,在多模匹配时,kmp算法就显得力不从心。所以在1975年,贝尔实验室才产生了Aho-Corasick automaton,AC自动机这种算法。<br><a id="more"></a></p>
+<p>   单模匹配的时候,我们往往可以运用kmp算法来进行匹配,时间复杂度相当可观。不过,在多模匹配时,kmp算法就显得力不从心。所以在1975年,贝尔实验室才产生了Aho-Corasick automation,AC自动机这种算法。<br><a id="more"></a></p>
 <blockquote>
 <h3 id="讲讲kmp"><a href="#讲讲kmp" class="headerlink" title="讲讲kmp"></a>讲讲kmp</h3></blockquote>
 <p>   大家在学AC自动机之前一定知道kmp算法,以及其时间复杂度:O(m+n)。为什么怎么快?因为失匹配不是一步天涯,而是退后仅仅几步。AC自动机紧紧围绕这个特点进行操作。这也是AC自动机的优点之一。</p>
@@ -130,7 +130,7 @@
 <p>   我们可以用kmp来后悔,同样也可以在Trie上后悔。我们可以建立Fail指针,当我们在Trie上匹配失败的时候,就可以转到fail指针上,然后继续匹配。这样子也就大大减少了时间复杂度,并且思路及其简单。</p>
 <p>   但是有时候我们想不通如何匹配,我们建Trie的是匹配串而不是被匹配串。其实我们对一个root的子节点一直搜到树的底部,一旦失配,立即转向fail指针就可以了。同理,如果匹配到底面了,同样可以走fail指针。所以就说AC自动机是kmp+Trie,名不虚传。</p>
 <p>   那么我们只剩一个问题了:如何建立fail指针?</p>
-<p>   首先,根节点的fail指针可以连向自己,也可以连向一个”假点”,node[0]。然后我们按照Bfs序来搜索。<br>   但我们搜索到点u的时候,看一看它的父亲fail的点的fail的点…反正是最高的”fail点”,然后看它有没有连向一个点v,并且边的char(string等等)是否更u的父亲到它的边的char一样。<br>   如果一样,说明这个点可以成为u的fail指针连向点,同时也是最优(唯一?)的fail点。下面的ppt有非常详细的过程,可以参观orz…</p>
+<p>   首先,根节点的fail指针可以连向自己,也可以连向一个”假点”,node[0]。然后我们按照Bfs序来搜索。<br>   但我们搜索到点u的时候,看一看它的父亲fail的点,然后看它有没有连向一个点v,并且边的char(string等等)是否更u的父亲到它的边的char一样。<br>   如果一样,说明这个点可以成为u的fail指针连向点,同时也是最优(唯一?)的fail点。下面的ppt有非常详细的过程,可以参观orz…</p>
 <p>   <a href="https://files.cnblogs.com/files/crazyacking/AC自动机基础入门.ppt" target="_blank" rel="noopener">某一个Dalao的ppt链接</a>,可以参考。</p>
 
         </div>
