@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-07-16</span>
-            <span class="time">18:10:26</span>
+            <span class="time">19:13:46</span>
           </span>
           
           <!--  Categories  -->
@@ -139,7 +139,7 @@
 <p>宏观图片就是:</p>
 <p><img src="https://cdn.luogu.org/upload/pic/23666.png" alt=""></p>
 <p>边界问题,<del>应该是log n次吧</del>。最后的num数组就是排完序的了。然后平时单、双、多字符是可以用基数排序的吧。</p>
-<h4 id="III类-CD3-3分算法排序-n-2-3n-log-2-3n-n"><a href="#III类-CD3-3分算法排序-n-2-3n-log-2-3n-n" class="headerlink" title="III类.CD3 3分算法排序 (n+2/3n log 2/3n) / (n)"></a>III类.CD3 3分算法排序 (n+2/3n log 2/3n) / (n)</h4><p>其实很简单,就是把i mod 3=0的后缀全部取出来,不参与排序。然后对那些i mod 3&lt;&gt;0的后缀进行倍增排序,最后把i mod 3=0的后缀合并一下(归并排序)。</p>
+<h4 id="III类-CD3-3分算法排序-1-3n-log-1-3n-n-2-3n-log-2-3n-n"><a href="#III类-CD3-3分算法排序-1-3n-log-1-3n-n-2-3n-log-2-3n-n" class="headerlink" title="III类.CD3 3分算法排序 (1/3n log 1/3n+n+2/3n log 2/3n) / (n)"></a>III类.CD3 3分算法排序 (1/3n log 1/3n+n+2/3n log 2/3n) / (n)</h4><p>其实很简单,就是把i mod 3=0的后缀全部取出来,不参与排序。然后对那些i mod 3&lt;&gt;0的后缀进行倍增排序,最后把i mod 3=0的后缀合并一下(归并排序,注意只有两个都是有序的,才能强制线性归并)。</p>
 <p>这种方法真的是<del>SAO</del>,代码复杂度也是很强。不过理论复杂度要好很多吧。(注意常数问题)</p>
 <blockquote>
 <h3 id="参考博客、PPT"><a href="#参考博客、PPT" class="headerlink" title="参考博客、PPT"></a>参考博客、PPT</h3></blockquote>
