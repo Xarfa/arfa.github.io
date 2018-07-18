@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="ARFA">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="浅谈分块思想"/>
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="ARFA"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://yoursite.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="ARFA" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>ARFA</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">浅谈分块思想</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xarfa">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.luogu.org/space/show?uid=77760">
+                  
+                  Luogu
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By ARFA</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2018-07-18</span>
+            <span class="time">20:01:45</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="浅谈分块思想"><a href="#浅谈分块思想" class="headerlink" title="浅谈分块思想"></a>浅谈分块思想</h2><p>一种用于区间的比高难的线段树好懂<strong>线性数据结构</strong>。不要看我写了怎么多,其实只是细节罢了,很适合新手学习。<br><a id="more"></a></p>
+<h3 id="什么是”分”-什么是”块”"><a href="#什么是”分”-什么是”块”" class="headerlink" title="什么是”分”,什么是”块”?"></a>什么是”分”,什么是”块”?</h3><p>分,顾名思义,就是把一个区间分成很多个部分。块,顾名思义,就是一块一块的区间。那我们为什么要把区间分成块呢?</p>
+<p>想想普通的线段树,其实就是把一些区间变成整体。分块也正是这样,它把n个数分成了trunc(sqrt(n)) (注意是向下取整)。如图:</p>
+<p><img src="https://cdn.luogu.org/upload/pic/24138.png" alt=""></p>
+<p>(声明,以下的trunc(sqrt(n)) 被写为 q(n))</p>
+<p>我们为什么要分成 trunc(sqet(n)) 多块?因为可以均摊复杂度。(看过斐波那契堆的都应该知道)</p>
+<p>我们要想清楚的几个细节,块数和每一个块里面有多少个数一样吗?我们的分块从1还是0开始?回答:不一样,块数(k)如果刚好开方n那么k=q(n)否则就是k=q(n)+1,而块数(kk)<strong>不管有没有数</strong>(因为有不开方的情况)始终保持kk=q(n)。我们可以随便从1或0开始,但是以下的讲解均从1开始。</p>
+<p>从1开始又有细节(都是从血史中提取的!!),如果kk=4(k=4,n=10),node=5那么应该在第二块。所以我们有一个点node,我们不能直接用 node div kk ,也不可以 node div kk+1 来求它在哪一块。如果 node 不可以整除 kk,那么我们需要给它+1。做几道练习:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function make(n:longint):longint; //看n在哪一块,n指的是node而不是数的个数</span><br><span class="line"> begin     </span><br><span class="line">        if (n mod kk=0) then //以下依据上述       </span><br><span class="line">            exit(n div kk);     </span><br><span class="line">        exit(n div kk+1); </span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.kk=30,k=30,n=901 符合实际吗?</span><br><span class="line">2.当kk=101,node=202的时候,node在第几块?</span><br></pre></td></tr></table></figure>
+<p>Answer:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.不符合,因为n不能被整开方,所以应该是k=31(注意kk是没有错的)</span><br><span class="line">2.1到101是第一块,102到202是第二块,203到303是第三块....,第二块。</span><br></pre></td></tr></table></figure></p>
+<p>那么我们又有什么操作呢?</p>
+<h3 id="区间操作"><a href="#区间操作" class="headerlink" title="区间操作"></a>区间操作</h3><p>如果你还不知道线段树的单点操作,请先学习线段树,这里直接上区间操作。</p>
+<h4 id="区间修改"><a href="#区间修改" class="headerlink" title="区间修改"></a>区间修改</h4><p>我们要修改区间l,r的时候,我们就可以在l,r的区间内的”块”(注意这里的块指的是区间内最大的块)进行q(n)复杂度的修改操作。也就是说,我们可以定义数组 interadd 称为<strong>整体要加值</strong>,每一次整块加入值的时候,我们就可以改变 interadd 的值。一般是 inc(interadd[i],add)。那区间内有kk个数,每一个都要加add,不是kk乘add吗,我说的是<strong>整体要加</strong>,所以就加add就可以了,我们就潦草的敷衍了整个区间。聪明的肯定就知道区间查询的时候要做什么。</p>
+<p><img src="https://cdn.luogu.org/upload/pic/24146.png" alt=""></p>
+<p>那么我们怎么求中间的大块很知道旁边出界的区域呢?其实很简单,上面已经讲了怎么求哪个点在哪一块,我们先 (real代表所在的最大块的最左和最右两个块)<br><code>real[1]:=make(l),real[2]:=make(r)</code>就可以直接得出l和r所在的块。但是还要注意,中间的块是real[1]+1到real[2]-1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i:=real[1]+1 to real[2]-1 do  //注意real数组代表的是块的编号的左右,</span><br><span class="line">    inc(interadd[i],add); //整体+add</span><br></pre></td></tr></table></figure>
+<p>我们有一个问题,如果l,r出界了怎么办？<br>简单!暴力!我们把左边出界的和右边出界的全部暴力加add就可以了!这里就要引入数组 num 就是代表一个点(注意不是一个块)共有的值是多少。</p>
+<p><img src="https://cdn.luogu.org/upload/pic/24148.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">for i:=l to real[1]*kk do //注意注意! real[1]是块那么转化成点就应该是real[1]*kk     </span><br><span class="line">begin             </span><br><span class="line">    inc(num[i],add); //个人加</span><br><span class="line">    inc(intersum[real[1]],add); //个人加了,那么整体也加了,intersum不是interadd,它的定义是整体 num 的值   </span><br><span class="line">end;         </span><br><span class="line">for i:=(real[2]-1)*kk+1 to r do //大佬推出来的 (real[2]-1)*kk+1 真是太强了!! </span><br><span class="line">begin             </span><br><span class="line">    inc(num[i],add); //个人加            </span><br><span class="line">    inc(intersum[real[2]],add); //整体加         </span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<p>问一个问题,如果2&lt;=n&lt;=100000,那么intersum 或 interadd 要开多少个数?这不是废话,q(n)。</p>
+<p>我们剩下最后一种情况,real[1]=real[2],意思是l和r在同一个区间。我们不确定l,r是不是这个区间的左右,有可能在里面,所以就需要暴力!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i:=l to r do         </span><br><span class="line">begin             </span><br><span class="line">	inc(num[i],add);             </span><br><span class="line">   	inc(intersum[real[1]],add); //注意intersum,所以是real[1]而不是i (make(i)或者是real(2)是没有所谓的)         </span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+<h4 id="区间查询"><a href="#区间查询" class="headerlink" title="区间查询"></a>区间查询</h4><p>区间查询与修改极其类似,大同小异罢了。</p>
+<p>一开始我们 find 的值肯定是0,然后再求出real[1]和real[2]就可以了。再像修改一样,我们判断两种情况:1.real[1]和real[2]不在同一个块上面,2.在同一个块上面。</p>
+<p>在同一个块,暴力!注意判断的时候:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if real[2]-real[1]&lt;=1 then   </span><br><span class="line">begin         </span><br><span class="line">    for i:=l to r do         </span><br><span class="line">        inc(find,num[i]+interadd[make(i)]);  //就是说整体加了多少和个人本来的值和个人加了多少=这个地方加了多少。那为什么 interadd[make(i)]要make(i)呢?因为它是每一个 区间 每一个点 加了多少诶。 </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>然后就是不同一个块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i:=real[1]+1 to real[2]-1 do //记住是l的分块+1到r的分块-1             </span><br><span class="line">    inc(find,intersum[i]+kk*interadd[i]); //为什么变成了整体的值+整体加了多少,而上面不是?因为上面是点啊,这里整体的值已经包括点了,但是我们需要减少时间复杂度就这样做啊。interadd[i]为什么要乘上kk?这个就是定义的问题了啊。     </span><br><span class="line">for i:=l to real[1]*kk do             </span><br><span class="line">    inc(find,num[i]+interadd[real[1]]); //注意出界是一个一个点的加        </span><br><span class="line">for i:=(real[2]-1)*kk+1 to r do             </span><br><span class="line">    inc(find,num[i]+interadd[real[2]]); //同上</span><br></pre></td></tr></table></figure></p>
+<p>个人认为已经非常详细,大家读完以后一定要注意分块的细节。我也是在打题解的时候弄懂了很多东西,欢迎大家吐槽或有疑问(最好是私信)。代码的话可以借鉴别人C++的,可以看出我是打pascal的,而且比较丑。准备下次再发。</p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h3><p>一个钟头后的代码补救。注意有一些地方是不一样的,所以仅供参考。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">// luogu-judger-enable-o2</span><br><span class="line"></span><br><span class="line">Uses math;</span><br><span class="line">var</span><br><span class="line">    block_num,node_num,mode,i,n,m,x,y:longint;</span><br><span class="line">    find,add:int64;</span><br><span class="line">    intersum,interadd:array[-1..500] of int64;</span><br><span class="line">    num:array[-1..100100] of int64;</span><br><span class="line"></span><br><span class="line">function Locate(node:longint):longint;</span><br><span class="line">begin</span><br><span class="line">    if node mod node_num=0 then</span><br><span class="line">        exit(node div node_num);</span><br><span class="line">    exit(node div node_num+1);</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">procedure Change(l,r:longint;add:int64);</span><br><span class="line">var</span><br><span class="line">    i:longint;</span><br><span class="line">    real:array[1..2] of longint;</span><br><span class="line">begin</span><br><span class="line">    real[1]:=Locate(l);</span><br><span class="line">    real[2]:=Locate(r);</span><br><span class="line">    if real[1]=real[2] then</span><br><span class="line">    for i:=l to r do</span><br><span class="line">    begin</span><br><span class="line">        inc(num[i],add);</span><br><span class="line">        inc(intersum[real[1]],add);</span><br><span class="line">    end</span><br><span class="line">    else</span><br><span class="line">    begin</span><br><span class="line">        for i:=real[1]+1 to real[2]-1 do</span><br><span class="line">            inc(interadd[i],add);</span><br><span class="line">        for i:=l to real[1]*node_num do</span><br><span class="line">        begin	</span><br><span class="line">            inc(num[i],add);</span><br><span class="line">            inc(intersum[real[1]],add);</span><br><span class="line">        end;</span><br><span class="line">        for i:=(real[2]-1)*node_num+1 to r do</span><br><span class="line">        begin</span><br><span class="line">            inc(num[i],add);</span><br><span class="line">            inc(intersum[real[2]],add);</span><br><span class="line">        end;</span><br><span class="line">    end;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">procedure Query(l,r:longint);</span><br><span class="line">var</span><br><span class="line">    i:longint;</span><br><span class="line">    real:array[1..2] of longint;</span><br><span class="line">begin</span><br><span class="line">    find:=0;</span><br><span class="line">    real[1]:=Locate(l);</span><br><span class="line">    real[2]:=Locate(r);</span><br><span class="line">    if real[2]-real[1]&lt;=1 then</span><br><span class="line">        for i:=l to r do</span><br><span class="line">            inc(find,num[i]+interadd[Locate(i)])</span><br><span class="line">    else</span><br><span class="line">    begin</span><br><span class="line">        for i:=real[1]+1 to real[2]-1 do</span><br><span class="line">            inc(find,intersum[i]+node_num*interadd[i]);</span><br><span class="line">        for i:=l to real[1]*node_num do</span><br><span class="line">            inc(find,num[i]+interadd[real[1]]);</span><br><span class="line">        for i:=(real[2]-1)*node_num+1 to r do</span><br><span class="line">            inc(find,num[i]+interadd[real[2]]);</span><br><span class="line">    end;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">procedure Ready;</span><br><span class="line">var</span><br><span class="line">    i,j:longint;</span><br><span class="line">begin</span><br><span class="line">    read(n,m);</span><br><span class="line">    node_num:=trunc(sqrt(n));</span><br><span class="line">    block_num:=trunc(sqrt(n));</span><br><span class="line">    if block_num&lt;&gt;sqrt(n) then</span><br><span class="line">        inc(block_num);</span><br><span class="line"></span><br><span class="line">    for i:=1 to n do</span><br><span class="line">        read(num[i]);</span><br><span class="line">    j:=1;</span><br><span class="line">    for i:=1 to n do</span><br><span class="line">    begin</span><br><span class="line">        inc(intersum[j],num[i]);</span><br><span class="line">        if i mod (block_num-1)=0 then</span><br><span class="line">            inc(j);</span><br><span class="line">    end;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">    Ready;</span><br><span class="line">    for i:=1 to m do</span><br><span class="line">    begin</span><br><span class="line">        read(mode,x,y);</span><br><span class="line">        if mode=1 then</span><br><span class="line">        begin</span><br><span class="line">            read(add);</span><br><span class="line">            Change(x,y,add);</span><br><span class="line">        end</span><br><span class="line">        else</span><br><span class="line">        begin</span><br><span class="line">            Query(x,y);</span><br><span class="line">            writeln(find);</span><br><span class="line">        end;</span><br><span class="line">    end;</span><br><span class="line">end.</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
