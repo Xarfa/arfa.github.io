@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="ARFA">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="�����"/>
+  <meta property="og:title" content="逆序对"/>
   <meta property="og:description" content="" />
   <meta property="og:site_name" content="ARFA"/>
   <meta property="og:type" content="article" />
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">�����</p>
+          <p class="title">逆序对</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -100,8 +100,14 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-07-19</span>
-            <span class="time">19:29:41</span>
+            <span class="time">20:45:55</span>
           </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/数据结构/">数据结构</a>
+</span>
           
         </div>
         <!-- Tags -->
@@ -109,23 +115,23 @@
         <!-- Post Main Content -->
         <div class="post-content">
           <blockquote>
-<h2 id="dz̸���������"><a href="#dz̸���������" class="headerlink" title="ǳ̸���������"></a>ǳ̸���������</h2></blockquote>
-<p>����������Դ������������,������������һ�������򵥵�������<br><a id="more"></a></p>
+<h2 id="浅谈逆序对做法"><a href="#浅谈逆序对做法" class="headerlink" title="浅谈逆序对做法"></a>浅谈逆序对做法</h2></blockquote>
+<p>由于最近考试触及到了逆序对,所以这里来讲一下这个最简单的做法。<br><a id="more"></a></p>
 <blockquote>
-<h3 id="Eֵ�߶�������"><a href="#Eֵ�߶�������" class="headerlink" title="Ȩֵ�߶�������"></a>Ȩֵ�߶�������</h3></blockquote>
-<p>����֪������Զ���: a[i]&gt;a[j] �� i&lt;j,�������ط������ͺ������뵽��</p>
+<h3 id="权值线段树做法"><a href="#权值线段树做法" class="headerlink" title="权值线段树做法"></a>权值线段树做法</h3></blockquote>
+<p>我们知道逆序对定义: a[i]&gt;a[j] 且 i&lt;j,所以朴素发方法就很容易想到。</p>
 <figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">     <span class="keyword">for</span> j:=i+<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span> </span><br><span class="line">           Operate;</span><br></pre></td></tr></table></figure>
-<p>Ȼ���������Ű�O(n^2)��ΪO(nlogn),���ǿ��԰�j���ѭ��ɾ��,�ø�α�Ĵ����ʾ</p>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">         <span class="comment">//iǰ��ı���С����</span></span><br><span class="line">          Operate;</span><br></pre></td></tr></table></figure>
-<p>Ȼ�����ǾͿ����뵽ǰ��������д洢Ȼ��ֱ�Ӳ�ѯ�ķ���,Ȼ���ֿ����뵽�����<strong>Ȩֵ�߶���</strong>,��Ϊ�����ӿ��Ա���<strong>Ҷ�ӽڵ㵥��</strong>,������Ҫ��ɢ����</p>
+<p>然后我们试着把O(n^2)改为O(nlogn),我们可以把j这个循环删掉,用更伪的代码表示</p>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> n <span class="keyword">do</span></span><br><span class="line">         <span class="comment">//i前面的比它小的数</span></span><br><span class="line">          Operate;</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以想到前面的数进行存储然后直接查询的方法,然后又可以想到神奇的<strong>权值线段树</strong>,因为这样子可以保持<strong>叶子节点单调</strong>,但是需要离散化。</p>
 <blockquote>
-<h3 id="��ѯ����"><a href="#��ѯ����" class="headerlink" title="��ѯ����"></a>��ѯ����</h3></blockquote>
-<p>���ǰ���Щ�Ѿ��洢�ĵ㰴��<strong>��ͨ�߶���</strong>�����ѯ�����Ϳ����ˡ���ͼ:</p>
+<h3 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h3></blockquote>
+<p>我们把那些已经存储的点按照<strong>普通线段树</strong>区间查询出来就可以了。如图:</p>
 <p><img src="https://cdn.luogu.org/upload/pic/24313.png" alt="4.png"></p>
-<p>��ɫ�Ĳ��ֿ϶����Ǳ�3С�ҷ���i&lt;j(��Ϊ���ǵ�������)��</p>
+<p>蓝色的部分肯定就是比3小且符合i&lt;j(因为我是倒序插入的)。</p>
 <blockquote>
-<h3 id="����-�޸�-����"><a href="#����-�޸�-����" class="headerlink" title="����(�޸�)����"></a>����(�޸�)����</h3></blockquote>
-<p>�޸Ĳ����ͷǳ���,ֱ�����ض�λ�ð����Ž�ȥ��Ҫע��<code>tree[k]:=tree[k*2]+tree[k*2+1]</code>��</p>
+<h3 id="插入-修改-操作"><a href="#插入-修改-操作" class="headerlink" title="插入(修改)操作"></a>插入(修改)操作</h3></blockquote>
+<p>修改操作就非常简单,直接在特定位置把数放进去。要注意<code>tree[k]:=tree[k*2]+tree[k*2+1]</code>。</p>
 <p><img src="https://cdn.luogu.org/upload/pic/24316.png" alt=""></p>
 <blockquote>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2></blockquote>
