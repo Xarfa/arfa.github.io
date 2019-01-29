@@ -11,7 +11,7 @@
   
   <item>
     <content>例えば目が覚めて「すべては幻だ」って。</content>
-    <translation>希望一觉醒来，发现“一切都是幻觉”。</translation>
+    <translation>希望一觉醒来，发现「一切都是幻觉」。</translation>
     <origin>
       <singer>TK from 凛として時雨</singer>
       <title>Katharsis</title>
@@ -317,7 +317,7 @@
   
   <item>
     <content>「あと何度君と同じ花火を見られるかな」って。</content>
-    <translation>“还能与你一起看几次同样的烟花呢。”</translation>
+    <translation>「还能与你一起看几次同样的烟花呢。」</translation>
     <origin>
       <singer>DAOKO / 米津玄師</singer>
       <title>打上花火</title>
@@ -330,6 +330,78 @@
     <origin>
       <singer>DAOKO / 米津玄師</singer>
       <title>打上花火</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>気付けば満天の星、君も见上げてるのかな。</content>
+    <translation>注意到满天的星星了吗，你也在抬头仰望吧。</translation>
+    <origin>
+      <singer>雪野五月</singer>
+      <title>You</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>そして优しく抱きしめるの、はにかんだ颜、见たいから。</content>
+    <translation>再来温柔的抱着你吧，因为还想看你害羞的表情。</translation>
+    <origin>
+      <singer>雪野五月</singer>
+      <title>You</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>どうしてか一行の、空白をうめられない。</content>
+    <translation>却不知为何，弥补不了空白的一行。</translation>
+    <origin>
+      <singer>Galileo Galilei</singer>
+      <title>青い栞</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>そうやって塞いだ両の手で、抱きしめている春の風。</content>
+    <translation>就这样用这双紧密的手，拥抱着春日之风。</translation>
+    <origin>
+      <singer>Galileo Galilei</singer>
+      <title>青い栞</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>「いつか、忘れてしまう今日だね」なんて、言わないでほしいよ。</content>
+    <translation>「总有一天，会把今天遗忘」什么的，希望你不要说出口。</translation>
+    <origin>
+      <singer>Galileo Galilei</singer>
+      <title>青い栞</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>光も影もまだ遠くて、それでも僕らは、優しさの理由が知りたい。</content>
+    <translation>虽然光与影遥不可及，连细节也难以窥探，但我们依然追寻着温柔的理由。</translation>
+    <origin>
+      <singer>ChouCho</singer>
+      <title>優しさの理由</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>うそぶく僕の目をからかうように。</content>
+    <translation>即便睁大眼睛，视线依旧被蒙蔽。</translation>
+    <origin>
+      <singer>ChouCho</singer>
+      <title>優しさの理由</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>全部過去になる前に、見つけに行こう。</content>
+    <translation>何不趁现在尚未化作往昔，将其寻觅。</translation>
+    <origin>
+      <singer>ChouCho</singer>
+      <title>優しさの理由</title>
     </origin>
   </item>
   
