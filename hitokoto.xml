@@ -1,29 +1,11 @@
 <hitokoto>
 
   <item>
-    <content>不意にガランとした教室に、君はもう、いなかった。</content>
-    <translation>不经意间变得空旷的教室中，你已经，不在了。</translation>
-    <origin>
-      <singer>じん</singer>
-      <title>Euphoria</title>
-    </origin>
-  </item>
-  
-  <item>
     <content>飛べないまま、羽ばたくんだ。</content>
     <translation>仍然举步维艰，但再次试着起飞了。</translation>
     <origin>
       <singer>じん</singer>
       <title>Euphoria</title>
-    </origin>
-  </item>
-  
-  <item>
-    <content>ねぇ、もしも全て忘れられたなら、泣かないで生きることも楽になるの？</content>
-    <translation>吶，若然一切都能尽数忘却的话，不再哭泣而活下去这事也会变得轻松吗？</translation>
-    <origin>
-      <singer>GUMI</singer>
-      <title>心做し</title>
     </origin>
   </item>
   
@@ -69,6 +51,24 @@
     <origin>
       <singer>Co shu Nie</singer>
       <title>Asphyxia</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>不意にガランとした教室に、君はもう、いなかった。</content>
+    <translation>不经意间变得空旷的教室中，你已经，不在了。</translation>
+    <origin>
+      <singer>じん</singer>
+      <title>Euphoria</title>
+    </origin>
+  </item>
+  
+  <item>
+    <content>ねぇ、もしも全て忘れられたなら、泣かないで生きることも楽になるの？</content>
+    <translation>吶，若然一切都能尽数忘却的话，不再哭泣而活下去这事也会变得轻松吗？</translation>
+    <origin>
+      <singer>GUMI</singer>
+      <title>心做し</title>
     </origin>
   </item>
   
